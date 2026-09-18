@@ -89,13 +89,6 @@ We encourage you to keep your code blocks, printing statements, and final answer
 ```{r}
 #WRITE YOUR CODE HERE
 
-```
-
-**Your Answer:**
-
-Write your response here.
-
-2. Which of the following types of variables are present in your data set? (i) nominal; (ii) ordinal; (iii); continuous; (iv) discrete. If present, name one example of such a variable present in your data set. \textbf{[4 points]}
 
 nrow(movies_one)              
 #observations
@@ -106,14 +99,19 @@ n_distinct(movies_one$title)
 glimpse(movies_one)           
 #all variables
 ```
-
-```
-
 **Your Answer:**
 
 Write your response here.
 The dataset contains 505 observations and 19 variables. There are 505 subjects because every row is a movie each movie title appears once so the number of subjects equals the number of observations. A subject is a single movie described by variables such as its title, budget, revenue, genre, runtime, release date, ratings and the first actor and director.
 
+2. Which of the following types of variables are present in your data set? (i) nominal; (ii) ordinal; (iii); continuous; (iv) discrete. If present, name one example of such a variable present in your data set. \textbf{[4 points]}
+
+```{r}
+#WRITE YOUR CODE HERE
+
+```
+
+**Your Answer:**
 3. A movie studio wants to know which types of movies give maximal revenue. Perform the following steps to provide the movie studio with an analysis which corresponds to their request:
 
 a. Summarize the variable revenue and report its mean, median, maximum, and minimum. \textbf{[2 points]}
@@ -128,16 +126,10 @@ For each step, you should provide first all the code you used to answer the ques
 Each week consists of 1, 2, or 3 subquestions. The total amount of points you can earn per week is 20 points. 
 
 *Step a*
-2. Which of the following types of variables are present in your data set? (i) nominal; (ii) ordinal; (iii); continuous; (iv) discrete. If present, name one example of such a variable present in your data set. \textbf{[4 points]}
-
 ```{r}
-
 #WRITE YOUR CODE HERE
-
-
 ```
 
-**Your Answer:**
 
 Write your formulated response here.
 
