@@ -159,15 +159,14 @@ movies_one[which.min(movies_one$revenue),
            c("title", "revenue")]
 sum(movies_one$revenue == 0)
 ```
-```
+
 **Your Answer:**
-
-
 
 *Step c*
 
 ```{r}
 #WRITE YOUR CODE HERE
+
 summary(movie_one$revenue)
 ```
 
