@@ -26,9 +26,12 @@ format:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+```
 
+
+```{r setup, include=FALSE}
 #packages used
-#install.packages("tidyverse")
+#install.packages("tidyverse") 
 #install.packages("yaml")
 #install.packages("rmarkdown")
 #install.packages("readxl")
@@ -42,6 +45,12 @@ require(yaml)
 library(readxl)
 library(cbsodataR)
 library(sf)
+```
+
+
+```{r setup, include=FALSE}
+#renaming and reading data
+movies_one <- read_tsv("Data/movies1.tsv")
 ```
 
 # Introduction
@@ -88,14 +97,22 @@ Write your response here.
 
 2. Which of the following types of variables are present in your data set? (i) nominal; (ii) ordinal; (iii); continuous; (iv) discrete. If present, name one example of such a variable present in your data set. \textbf{[4 points]}
 
-```{r answer 2}
-#WRITE YOUR CODE HERE
+nrow(movies_one)              
+#observations
+ncol(movies_one)              
+# variables
+n_distinct(movies_one$title)  
+#unique movies (subjects)
+glimpse(movies_one)           
+#all variables
+```
 
 ```
 
 **Your Answer:**
 
 Write your response here.
+The dataset contains 505 observations and 19 variables. There are 505 subjects because every row is a movie each movie title appears once so the number of subjects equals the number of observations. A subject is a single movie described by variables such as its title, budget, revenue, genre, runtime, release date, ratings and the first actor and director.
 
 3. A movie studio wants to know which types of movies give maximal revenue. Perform the following steps to provide the movie studio with an analysis which corresponds to their request:
 
@@ -111,10 +128,12 @@ For each step, you should provide first all the code you used to answer the ques
 Each week consists of 1, 2, or 3 subquestions. The total amount of points you can earn per week is 20 points. 
 
 *Step a*
+2. Which of the following types of variables are present in your data set? (i) nominal; (ii) ordinal; (iii); continuous; (iv) discrete. If present, name one example of such a variable present in your data set. \textbf{[4 points]}
 
 ```{r}
 
 #WRITE YOUR CODE HERE
+
 
 ```
 
