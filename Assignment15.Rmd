@@ -26,6 +26,22 @@ format:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
+#packages used
+#install.packages("tidyverse")
+#install.packages("yaml")
+#install.packages("rmarkdown")
+#install.packages("readxl")
+#install.packages("cbsodataR")
+#install.packages("sf")
+
+#require packages 
+require(tidyverse)
+require(rmarkdown)
+require(yaml)
+library(readxl)
+library(cbsodataR)
+library(sf)
 ```
 
 # Introduction
