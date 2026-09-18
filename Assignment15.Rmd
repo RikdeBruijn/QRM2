@@ -37,6 +37,7 @@ knitr::opts_chunk$set(echo = TRUE)
 #install.packages("readxl")
 #install.packages("cbsodataR")
 #install.packages("sf")
+install.packages("moments")
 
 #require packages 
 require(tidyverse)
@@ -45,6 +46,7 @@ require(yaml)
 library(readxl)
 library(cbsodataR)
 library(sf)
+library(moments)
 ```
 
 
@@ -166,37 +168,52 @@ sum(movies_one$revenue == 0)
 
 ```{r}
 #WRITE YOUR CODE HERE
+ggplot(movies_one, aes(x = revenue)) +
+  geom_histogram(bins = 30) +
+  scale_x_continuous(labels = scales::label_number(scale = 1e-6, suffix = "M")) +
+  labs(title = "Histogram of movie revenue",
+       x = "Revenue (in millions of dollars)",
+       y = "Number of movies")
 
-summary(movie_one$revenue)
 ```
 
 **Your Answer:**
+the Histogram show that a lot of movies dont make a lot of money it is very right sided. Ninety percent of the movies earn less than  244 million dollars while the highest revenue is almost 2.8 billion dollars. This shows that making money in the movie industry is very concentrated with a few movies most movies earn little or nothing while a few blockbusters earn extremely high revenues.
 
-Write your formulated response here.
 
 *Step d*
 
 ```{r}
 
 #WRITE YOUR CODE HERE
+movies_one$log_revenue <- log(movies_one$revenue)
 
+sum(movies_one$revenue == 0)
+mean(movies_one$log_revenue)
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+For movies with a revenue of zero, the log is undefined Rstudio returns -Inf (minus infinity), since log(0) = -∞. This affects 160 movies because of this the mean of log revenue is  -Inf and is therefore not usefull
 
 *Step e*
 
 ```{r}
 
 #WRITE YOUR CODE HERE
+movies_one$log_revenue <- ifelse(movies_one$revenue == 0, NA, log(movies_one$revenue))
 
+mean(movies_one$log_revenue, na.rm = TRUE)
+
+ggplot(movies_one, aes(x = log_revenue)) +
+  geom_histogram(bins = 30, na.rm = TRUE) +
+  labs(title = "Histogram of log revenue",
+       x = "Log of revenue",
+       y = "Number of movies")
 ```
 
 **Your Answer:**
-
-Write your formulated response here.
+when replacing the log of zero revenue with N.A. the mean of log revenue is about 17.45 useing the left over 345 movies. The histogram is unimodal and left-skewed most values lie between roughly 16 and 21, with a peak around 18, and there is a thin tail to the left formed by a few movies with a very low positive revenue. The shape is much more symmetric than the histogram of the raw revenue.
 
 *Step f*
 
@@ -204,11 +221,16 @@ Write your formulated response here.
 
 #WRITE YOUR CODE HERE
 
+skewness(movies_one$revenue)
+kurtosis(movies_one$revenue)
+
+skewness(movies_one$log_revenue, na.rm = TRUE)
+kurtosis(movies_one$log_revenue, na.rm = TRUE)
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+For revenue the skewness is about 6,05 and the kurtosis is about 63,3. For log revenue the skewness is about -2,29 and the kurtosis is about 12,6. A skewness of 6,05 confirms the strong right skew that we see in the histogram of revenue, and a kurtosis far above 3 the value for a normal distribution means heavy tails so extreme outliers such as Avatar. For log revenue the skewness is negative in line with the thin left tail in the histogram and both numbers are much closer to those of a normal distribution. The kurtosis of 12,6 is still above 3, so the log transformation makes the distribution more symmetric but does not make it fully normal.
 
 # Week 2 
 1 Is your dataset movies1.tsv the full population, or is it a sample of a larger population? If the latter, how would you describe the full population? \textbf{[4 points]}
