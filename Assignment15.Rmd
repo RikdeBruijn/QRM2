@@ -89,7 +89,6 @@ We encourage you to keep your code blocks, printing statements, and final answer
 ```{r}
 #WRITE YOUR CODE HERE
 
-
 nrow(movies_one)              
 #observations
 ncol(movies_one)              
@@ -108,10 +107,21 @@ The dataset contains 505 observations and 19 variables. There are 505 subjects b
 
 ```{r}
 #WRITE YOUR CODE HERE
+glimpse(movies_one)                 # overview of variable types
+
+unique(movies_one$genre)            # nominal: categories without order
+summary(movies_one$popularity)      # continuous: decimal values
+summary(movies_one$vote_count)      # discrete: whole numbers (counts)
 
 ```
 
 **Your Answer:**
+(i) Nominal: A nominal variable has categories without a order. Example genre Thriller, Comedy, Drama, Action. Other examples are original_language and director_gender.
+(ii) Ordinal: . An ordinal variable has categories with a meaningful order, but no known distance between them like low, medieum, high. None of the variables in this dataset is a  ordered category. 
+(iii) Continuous: present. A continuous variable can take any value within a range including decimals example: popularity. Other examples are revenue, budget and runtime.
+(iv) Discrete: A discrete variable can only take separate, countable values. Example: vote_count, the number of votes a movie received. release_month (1–12) and release_year are other examples.
+
+
 3. A movie studio wants to know which types of movies give maximal revenue. Perform the following steps to provide the movie studio with an analysis which corresponds to their request:
 
 a. Summarize the variable revenue and report its mean, median, maximum, and minimum. \textbf{[2 points]}
@@ -127,11 +137,15 @@ Each week consists of 1, 2, or 3 subquestions. The total amount of points you ca
 
 *Step a*
 ```{r}
-#WRITE YOUR CODE HERE
+summary(movies_one$revenue)
+
+mean(movies_one$revenue)
+median(movies_one$revenue)
+max(movies_one$revenue)
+min(movies_one$revenue)
 ```
-
-
-Write your formulated response here.
+**Your Answer:**
+The mean revenue is about 94.8 million dollar (94.815.482) the median is about $19.5 million (19.480.739) the maximum is 2.787.965.087 dollar and the minimum is 0 dollar. The mean is five times higher than the median which shows that a small number of  successful movies increase  average.
 
 *Step b*
 
@@ -139,18 +153,22 @@ Write your formulated response here.
 
 #WRITE YOUR CODE HERE
 
+movies_one[which.max(movies_one$revenue), 
+           c("title", "revenue")]
+movies_one[which.min(movies_one$revenue), 
+           c("title", "revenue")]
+sum(movies_one$revenue == 0)
 ```
-
+```
 **Your Answer:**
 
-Write your formulated response here.
+
 
 *Step c*
 
 ```{r}
-
 #WRITE YOUR CODE HERE
-
+summary(movie_one$revenue)
 ```
 
 **Your Answer:**
