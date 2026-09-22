@@ -1,7 +1,7 @@
 ---
 title: "QRM II Graded Assignment (15)"
 subtitle: "Period 1, 2026"
-author: "Fill in your group number and names here"
+author: "Nynke Latham 2862763, RIk de Bruijn, Meike Bliek"
 date:  "`r format(Sys.Date(), '%d-%m-%Y')`"
 output:
   pdf_document:
@@ -78,7 +78,7 @@ The use of generative AI is \textbf{not} permitted and may result in a grade of 
 
 To answer the assignment, you can simply fill out this R markdown document. There are designated places which you can fill with R code. There are also designated spaces for you to answer each question. Often, the structure of an answer will be as follows. First, you type the R code in the designated box. This will show how you analyzed the data to get the answer to the question. Below the box for the R code, you will then summarize your answer to the question, i.e. what are the conclusions that you draw from the data analysis? 
 
-When handing in, you are supposed to submit this .Rmd file, and a knitted version of this document. You can knit this document to pdf, word, or html. Knitting to pdf requires you to have a .tex distribution installed on your computer. Knitting to Word requires you to have Word installed. 
+When handing in, you are supposed to submit this .Rmd file, and a knitted version of this document. You can knit this document to pdf, word, or html. Knitting to pdf requires you to have a .tex distribution installed on your computer. Knitting to Word requires you to have Word installed. jjfjf
 
 The exercises are designed such that you should be able to finish the majority of them during the tutorial each week. If you are not able to finish them fully during that time, you are expected to work on it in your own time using the computers on campus or your own device. It is best to meet as a group in-person when working together. If you want to work remotely, github is a good platform to guarantee smooth collaboration. Alternatively, you can email this .Rmd file back and forth to one another as a group, but this is not recommended as it is more cumbersome.
 
@@ -89,10 +89,10 @@ We encourage you to keep your code blocks, printing statements, and final answer
 1.  Find the dataset “movies1.tsv” on Canvas. Describe your data set: How many observations does it have. How many variables are there? How many subjects? What consists of a subject? \textbf{[4 points]}
 
 ```{r}
-#WRITE YOUR CODE HERE
+#WRITE YOUR CODE HERE code 
 
 nrow(movies_one)              
-#observations
+#observations 
 ncol(movies_one)              
 # variables
 n_distinct(movies_one$title)  
