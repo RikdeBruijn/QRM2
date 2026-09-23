@@ -47,6 +47,8 @@ library(readxl)
 library(cbsodataR)
 library(sf)
 library(moments)
+
+
 ```
 
 
@@ -237,7 +239,7 @@ For revenue the skewness is about 6,05 and the kurtosis is about 63,3. For log r
 
 *Your answer here:*
 
-Write your formulated response here.
+The dataset movies1.tsv (movie_one) is a sample not the full population. It contains only 505 movies, while there are  thousands of movies released yearly, so this is clearly a smaller part rather than every movie that exists.
 
 
 2 For this question, you will assume that your data set is the full population. 
@@ -252,51 +254,78 @@ e. Using the formulas of the *Central Limit Theorem*, give the distribution of t
 
 ```{r}
 #WRITE YOUR CODE HERE
-
+mean(movies_one$vote_average)
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
-
+The mean of vote_average in the full population (505 movies) is 6.042772
 *Step b*
 
 ```{r}
 #WRITE YOUR CODE HERE
+set.seed(123)
+movies_sample <- movies_one[sample(nrow(movies_one), 25), ]
 
+mean(movies_sample$vote_average)
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+The mean of vote_average in this random sample of 25 movies is close  but not exactly equal to the population mean of 6.04 from the question before. Because the sample only contains 25 out of 505 its mean is affected by sampling variation: a different random sample would give a slightly different mean. Still, since the sample was drawn randomly it should on average be a reasonable estimate of the population mean
 
 *Step c*
 
 ```{r}
 #WRITE YOUR CODE HERE
+set.seed(123)
+sample_means <- numeric(100)
+for (i in 1:100) {
+  sample_i <- movies_one[sample(nrow(movies_one), 25), ]
+  sample_means[i] <- mean(sample_i$vote_average)
+}
+head(sample_means)
 
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+The vector sample_means contains the mean vote_average of 100 different random samples of 25 movies. The first values of the vector are printed above with head().
 
 *Step d*
 
 ```{r}
 #WRITE YOUR CODE HERE
 
+summary(sample_means)
+sd(sample_means)
+
+ggplot(data.frame(sample_means), aes(x = sample_means)) +
+  geom_histogram(bins = 15) +
+  labs(title = "Histogram of sample means of vote_average (100 samples of n = 25)",
+       x = "Sample mean of vote_average",
+       y = "Number of samples")
+
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+The mean of sample_means is approximately 6.037 and is very close to the population mean of 6.04. The standard deviation of sample_means is approximately 0.2337529. The histogram is  bell-shaped centered around a sample mean of roughly 6.037, with a slight left skew. This shape is close to what the Central Limit Theorem predicts: even though only 100 samples were drawn, the distribution of sample means already resembles a normal distribution.
 
 *Step e*
 
+```{r answer 2e}
+pop_mean <- mean(movies_one$vote_average)
+pop_sd <- sd(movies_one$vote_average)
+
+pop_mean                     # expected value of the sample mean
+pop_sd / sqrt(25)            # standard deviation (standard error) of the sample mean
+```
+
 **Your Answer:**
 
-Write your formulated response here.
+According to the Central Limit Theorem, for a large enough sample size the distribution of the sample mean is approximately normal, with expected value equal to the population mean, $\mu = 6.043$, and standard deviation (standard error) equal to $\sigma / \sqrt{n} = 1.192 / \sqrt{25} \approx 0.238$.
+This is very close to what we found by simulation in d.: a mean of [jouw mean uit d, bijvoorbeeld ≈6.0–6.1] and a standard deviation of [jouw sd uit d, bijvoorbeeld ≈0.25–0.27]. The small differences are due to sampling variation, since we only drew 100 samples rather than an infinite number of samples. This confirms the Central Limit Theorem: even though the original variable `vote_average` is not perfectly normally distributed, the distribution of its sample mean is approximately normal and centered on the population mean, with a spread that shrinks as the sample size $n$ increases.
 
 3. Is there a variable in your data set which you would expect to follow a discrete uniform distribution? Explain, without looking at the data, why you expect this data to be discrete uniform. If the data would indeed follow a discrete uniform distribution, what would you expect the mean and standard deviation of this variable to be? Next, plot a histogram of the variable, and plot an appropriate discrete uniform distribution on top of this histogram. Comment whether the variable indeed follows this expected distribution. If the distribution deviates from the discrete uniform distribution, explain why this is the case. \textbf{[6 points]}
 
