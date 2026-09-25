@@ -6,6 +6,7 @@ date:  "`r format(Sys.Date(), '%d-%m-%Y')`"
 output:
   pdf_document:
     number_sections: true
+    latex_engine: xelatex
   html_document:
     df_print: paged
 
@@ -22,6 +23,8 @@ header-includes:
 format:
   html:
     code-overflow: wrap
+    
+    
 ---
 
 ```{r setup, include=FALSE}
@@ -318,7 +321,7 @@ pop_sd / sqrt(25)            # standard deviation (standard error) of the sample
 
 **Your Answer:**
 
-According to the Central Limit Theorem, for a large enough sample size the distribution of the sample mean is approximately normal, with expected value equal to the population mean, \mu = 6.043, and standard deviation (standard error) equal to \sigma / \sqrt{n} = 1.192 / \sqrt{25} \approx 0.238$.
+According to the Central Limit Theorem, for a large enough sample size the distribution of the sample mean is approximately normal, ...with expected value equal to the population mean, $\mu = 6.043$, and standard deviation (standard error) equal to $\sigma / \sqrt{n} = 1.192 / \sqrt{25} \approx 0.238$.
 This is very close to what we found by simulation in d.: a mean of 6.096and a standard deviation of 0.2337529. The small differences are due to sampling variation, since we only drew 100 samples rather than an infinite number of samples. This confirms the Central Limit Theorem: even though the original variable `vote_average` is not perfectly normally distributed, the distribution of its sample mean is approximately normal and centered on the population mean, with a spread that shrinks as the sample size n increases.
 
 3. Is there a variable in your data set which you would expect to follow a discrete uniform distribution? Explain, without looking at the data, why you expect this data to be discrete uniform. If the data would indeed follow a discrete uniform distribution, what would you expect the mean and standard deviation of this variable to be? Next, plot a histogram of the variable, and plot an appropriate discrete uniform distribution on top of this histogram. Comment whether the variable indeed follows this expected distribution. If the distribution deviates from the discrete uniform distribution, explain why this is the case. \textbf{[6 points]}
@@ -418,7 +421,7 @@ binom.test(x = 426, n = 426 + 44, p = 0.5)
 
 
 Null hypothesis H0: the probability that a movie is directed by a male director is P = 0.5 (male and female directors are equally likely).
-Alternative hypothesis H1:** $p \neq 0.5$.
+   **Alternative hypothesis $H_1$:** $p \neq 0.5$.
 Significance level:** $\alpha = 0.05$. Of the 470 movies with a known director gender, 426 were directed by a man. A two-sided binomial test against $p = 0.5$ gives a test statistic based on 426 successes out of 470 trials, with a p-value that is essentially 0 (far below 0.001). Because the p-value is much smaller than $\alpha = 0.05$, we reject the null hypothesis. There is very strong evidence that male and female directors are not equally likely in this population; movies are directed by men far more often than by women.
 
 
@@ -457,7 +460,7 @@ p_value
 **Your Answer:**
 
 
- H0: $\sigma^2_{female} = \sigma^2_{male}$ (≈48,055, treated as a known population value). **$H_1$:** $\sigma^2_{female} \neq \sigma^2_{male}$. $\alpha = 0.05$. Since $\sigma^2_{male}$ is known, we test $s^2_{female}$ against it using $\chi^2 = \frac{(n-1)s^2_{female}}{\sigma^2_{male}}$, which follows a chi-square distribution with $n-1 = 43$ degrees of freedom under $H_0$. The test statistic is $\chi^2 \approx 15.65$, giving a two-sided p-value of approximately 0.00008. Since this is well below $\alpha = 0.05$, wereject H0: the variance of revenue for female-directed movies differs from (and is lower than) that for male-directed movies.
+ H0: $\sigma^2_{female} = \sigma^2_{male}$ (approximately 48,055, treated as a known population value). **$H_1$:** $\sigma^2_{female} \neq \sigma^2_{male}$. $\alpha = 0.05$. Since $\sigma^2_{male}$ is known, we test $s^2_{female}$ against it using $\chi^2 = \frac{(n-1)s^2_{female}}{\sigma^2_{male}}$, which follows a chi-square distribution with $n-1 = 43$ degrees of freedom under $H_0$. The test statistic is $\chi^2 \approx 15.65$, giving a two-sided p-value of approximately 0.00008. Since this is well below $\alpha = 0.05$, wereject H0: the variance of revenue for female-directed movies differs from (and is lower than) that for male-directed movies.
 
 3
 
@@ -523,7 +526,7 @@ yearly_revenue %>%
 
 **Your Answer:**
 
-A confidence interval for a given year can be wide for two main reasons: (1) a small sample size in that year, since the standard error is s/\sqrt{n} and shrinks as n grows, and (2) a large standard deviation of revenue within that year, meaning revenue values are very spread out (e.g. a mix of blockbusters and low-revenue movies). This can indeed be verified in the data. For example, 1991 and 1992 have only 3 movies each, and their confidence intervals are among the widest in the plot, showing that a small sample size drives up the width. Similarly, 2009 has a much larger sample (37 movies) but still has one of the widest intervals, because its standard deviation of revenue is very high (movies that year ranged from low-revenue films to a very high-grossing blockbuster). In contrast, years like 1993 have both a small n and a low standard deviation, resulting in a narrow interval. So both a small sample size and high within-year variability contribute to wider confidence intervals, and the data confirms that both factors are present in different years.
+A confidence interval for a given year can be wide for two main reasons: (1) a small sample size in that year, since the standard error is $s/\sqrt{n}$ and shrinks as n grows, and (2) a large standard deviation of revenue within that year, meaning revenue values are very spread out (e.g. a mix of blockbusters and low-revenue movies). This can indeed be verified in the data. For example, 1991 and 1992 have only 3 movies each, and their confidence intervals are among the widest in the plot, showing that a small sample size drives up the width. Similarly, 2009 has a much larger sample (37 movies) but still has one of the widest intervals, because its standard deviation of revenue is very high (movies that year ranged from low-revenue films to a very high-grossing blockbuster). In contrast, years like 1993 have both a small n and a low standard deviation, resulting in a narrow interval. So both a small sample size and high within-year variability contribute to wider confidence intervals, and the data confirms that both factors are present in different years.
 
 # Week 4 
 
