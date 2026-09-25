@@ -33,7 +33,6 @@ knitr::opts_chunk$set(echo = TRUE)
 #install.packages("readxl")
 #install.packages("cbsodataR")
 #install.packages("sf")
-install.packages("moments")
 
 #require packages 
 require(tidyverse)
