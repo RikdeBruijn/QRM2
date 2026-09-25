@@ -1,14 +1,14 @@
 ---
 title: "QRM II Graded Assignment (15)"
-subtitle: "Period 1, 2026"
 author: "Nynke Latham 2862763, RIk de Bruijn 2894496, Meike Bliek 2892575"
-date:  "`r format(Sys.Date(), '%d-%m-%Y')`"
+date: "`r format(Sys.Date(), '%d-%m-%Y')`"
 output:
   pdf_document:
     number_sections: true
   html_document:
     df_print: paged
-
+  word_document: default
+subtitle: Period 1, 2026
 header-includes:
 - "\\setcounter{section}{-1}"
 - |
@@ -18,7 +18,6 @@ header-includes:
     showtabs = false,
     breaklines,
     commandchars=\\\{\}
-  }
 format:
   html:
     code-overflow: wrap
