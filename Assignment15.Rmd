@@ -272,7 +272,7 @@ mean(movies_sample$vote_average)
 
 **Your Answer:**
 
-The mean of vote_average in this random sample of 25 movies is close  but not exactly equal to the population mean of 6.04 from the question before. Because the sample only contains 25 out of 505 its mean is affected by sampling variation: a different random sample would give a slightly different mean. Still, since the sample was drawn randomly it should on average be a reasonable estimate of the population mean
+The mean of vote_average in this random sample of 25 movies is close (5.904) but not exactly equal to the population mean of 6.04 from the question before. Because the sample only contains 25 out of 505 its mean is affected by sampling variation: a different random sample would give a slightly different mean. Still, since the sample was drawn randomly it should on average be a reasonable estimate of the population mean
 
 *Step c*
 
@@ -387,8 +387,8 @@ upper
 
 **Your Answer:**
 
-The 90% confidence interval for the mean revenue is approximately [$79,639,410 ; $109,991,553].
-This means that if we were to repeat this sampling many times and construct a 90% confidence interval each time, about 90% of those intervals would contain the real population mean of the revenue. we are 90% confident that the true mean revenue of the full population of movies lies between roughly $79.6 and $110.0 million.
+The 90% confidence interval for the mean revenue is approximately [79,639,410 ; 109,991,553].
+This means that if we were to repeat this sampling many times and construct a 90% confidence interval each time, about 90% of those intervals would contain the real population mean of the revenue. We are 90% confident that the true mean revenue of the full population of movies lies between roughly 79.6 and 110.0 million dollar.
 
 2
 
@@ -423,8 +423,8 @@ binom.test(x = 426, n = 426 + 44, p = 0.5)
 **Your Answer:**
 
 
-Null hypothesis ($H_0$): the probability that a movie is directed by a male director is $p = 0.5$ (male and female directors are equally likely).
-Alternative hypothesis ($H_1$):** $p \neq 0.5$.
+Null hypothesis H0: the probability that a movie is directed by a male director is P = 0.5 (male and female directors are equally likely).
+Alternative hypothesis H1:** $p \neq 0.5$.
 Significance level:** $\alpha = 0.05$. Of the 470 movies with a known director gender, 426 were directed by a man. A two-sided binomial test against $p = 0.5$ gives a test statistic based on 426 successes out of 470 trials, with a p-value that is essentially 0 (far below 0.001). Because the p-value is much smaller than $\alpha = 0.05$, we reject the null hypothesis. There is very strong evidence that male and female directors are not equally likely in this population; movies are directed by men far more often than by women.
 
 
@@ -440,7 +440,7 @@ var(movies_one$revenue_millions[movies_one$director_gender == "female"], na.rm =
 
 **Your Answer:**
 
-After recoding revenue into millions of dollars, the variance of revenue for movies with a male director is approximately 48,055 (million squared), and for movies with a female director it is approximately 17,490 (million squared).
+After recording revenue into millions of dollars, the variance of revenue for movies with a male director is approximately 48,055 (million squared), and for movies with a female director it is approximately 17,490 (million squared).
 
 *step d*
 ```{r}
@@ -526,7 +526,6 @@ yearly_revenue %>%
 
 ```
 
-**Your Answer:**
 
 **Your Answer:**
 
