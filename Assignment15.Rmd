@@ -165,6 +165,7 @@ sum(movies_one$revenue == 0)
 ```
 
 **Your Answer:**
+The movie with the highest revenue is Avatar, with a revenue of 2,787,965,087 dollar. The lowest revenue is 0 dollar, which is shared by 160 movies; one example is Faith Like Potatoes.
 
 *Step c*
 
