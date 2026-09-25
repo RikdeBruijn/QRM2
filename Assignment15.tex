@@ -1,0 +1,1676 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{5}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{section}{-1}
+\usepackage{fvextra}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{
+  showspaces = false,
+  showtabs = false,
+  breaklines,
+  commandchars=\\\{\}
+}
+
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={QRM II Graded Assignment (15)},
+  pdfauthor={Nynke Latham 2862763, RIk de Bruijn 2894496, Meike Bliek 2892575},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{QRM II Graded Assignment (15)}
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{Period 1, 2026}
+\author{Nynke Latham 2862763, RIk de Bruijn 2894496, Meike Bliek
+2892575}
+\date{25-09-2026}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}\label{introduction}
+
+This assignment is to be completed in groups of 4-5. Further, all
+students in your group need to be assigned to the same R tutorial group
+(Friday's tutorial). You can sign yourself up for a group on Canvas.
+Please do so
+\textbf{before the start of your first R tutorial on Friday September 4th.}
+You can use the Discussion Board in Canvas if you do not have a group
+yet or if your group is incomplete.
+
+The assignment has 5 parts, and each part corresponds to the course
+material of that week (with the exclusion of week 6, for which there is
+no R programming material).
+
+You are supposed to hand in these assignments on Canvas at the following
+dates:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Deadline 1} \emph{Sunday September 27th, at 23:59pm}: you are
+  supposed to hand in weeks 1, 2, and 3 of this assignment. This will
+  determine 18\% of your overall course grade
+\item
+  \textbf{Deadline 2} \emph{Sunday October 11th, at 23:59pm}: you are
+  supposed to hand in weeks 4, and 5 of this assignment. This will
+  determine 12\% of your overall course grade
+\end{itemize}
+
+The R tutorials (each Friday) will consist of two halves. During the
+first half, you will discuss the tutorial exercises. These can be
+downloaded separately from Canvas. During the second half, you can work
+on this graded assignment within your own group. The purpose is that you
+find out how to work with R for doing statistical analyses by yourself.
+The tutorial exercises are meant to teach you basic commands to get you
+started, but to answer the problem sets in this assignment, you might
+need to research your own solutions, and use functions and commands not
+described in the tutorial exercises. Learning how to solve your own
+research problems is integral part of learning R. When you and your
+group get stuck on how to approach an exercise, the hierarchy in finding
+your way is as follows:
+
+\begin{itemize}
+\tightlist
+\item
+  use the concepts from the tutorial exercises;
+\item
+  use the cheat sheets available on Canvas;
+\item
+  use Google, YouTube, StackOverflow, or another website;
+\item
+  ask the teacher.
+\end{itemize}
+
+The use of generative AI is \textbf{not} permitted and may result in a
+grade of 0. See the AI protocol in the course manual for details.
+
+To answer the assignment, you can simply fill out this R markdown
+document. There are designated places which you can fill with R code.
+There are also designated spaces for you to answer each question. Often,
+the structure of an answer will be as follows. First, you type the R
+code in the designated box. This will show how you analyzed the data to
+get the answer to the question. Below the box for the R code, you will
+then summarize your answer to the question, i.e.~what are the
+conclusions that you draw from the data analysis?
+
+When handing in, you are supposed to submit this .Rmd file, and a
+knitted version of this document. You can knit this document to pdf,
+word, or html. Knitting to pdf requires you to have a .tex distribution
+installed on your computer. Knitting to Word requires you to have Word
+installed.
+
+The exercises are designed such that you should be able to finish the
+majority of them during the tutorial each week. If you are not able to
+finish them fully during that time, you are expected to work on it in
+your own time using the computers on campus or your own device. It is
+best to meet as a group in-person when working together. If you want to
+work remotely, github is a good platform to guarantee smooth
+collaboration. Alternatively, you can email this .Rmd file back and
+forth to one another as a group, but this is not recommended as it is
+more cumbersome.
+
+We encourage you to keep your code blocks, printing statements, and
+final answers, as short as possible. In any case, there is a page limit
+of 6 pages per week, which encompasses the total length of this document
+which consists of the questions, your coding lines, and your answers.
+When your answers to questions of the respective week exceed this page
+limit, they will not be graded, resulting in zero points.
+
+\section{Week 1}\label{week-1}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Find the dataset ``movies1.tsv'' on Canvas. Describe your data set:
+  How many observations does it have. How many variables are there? How
+  many subjects? What consists of a subject? \textbf{[4 points]}
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#WRITE YOUR CODE HERE code }
+
+\FunctionTok{nrow}\NormalTok{(movies\_one)              }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 505
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#observations }
+\FunctionTok{ncol}\NormalTok{(movies\_one)              }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 19
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# variables}
+\FunctionTok{n\_distinct}\NormalTok{(movies\_one}\SpecialCharTok{$}\NormalTok{title)  }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 505
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#unique movies (subjects)}
+\FunctionTok{glimpse}\NormalTok{(movies\_one)           }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 505
+## Columns: 19
+## $ index               <dbl> 1773, 2540, 1174, 3262, 4324, 214, 1737, 610, 2738~
+## $ budget              <dbl> 2.70e+07, 1.50e+07, 4.00e+07, 0.00e+00, 0.00e+00, ~
+## $ keywords            <chr> "fbi island serial killer series of murders", "fir~
+## $ original_language   <chr> "en", "en", "en", "en", "en", "en", "en", "en", "e~
+## $ title               <chr> "Mindhunters", "Krampus", "Ride Along 2", "Enough ~
+## $ popularity          <dbl> 17.193659, 31.565117, 25.136082, 14.969093, 0.1478~
+## $ release_date        <date> 2004-05-07, 2015-11-26, 2016-01-14, 2013-09-18, 2~
+## $ revenue             <dbl> 21148829, 61548707, 124827316, 25288872, 0, 325756~
+## $ runtime             <dbl> 106, 98, 102, 93, 97, 130, 108, 99, 100, 99, 82, 1~
+## $ vote_average        <dbl> 6.3, 5.9, 6.1, 6.6, 6.0, 6.2, 5.5, 4.4, 6.0, 6.2, ~
+## $ vote_count          <dbl> 333, 584, 555, 348, 9, 597, 640, 533, 210, 371, 11~
+## $ genre               <chr> "Thriller", "Comedy", "Comedy", "Drama", "Drama", ~
+## $ release_year        <dbl> 2004, 2015, 2016, 2013, 2006, 2000, 2016, 2014, 20~
+## $ release_month       <dbl> 5, 11, 1, 9, 10, 3, 2, 1, 2, 9, 9, 12, 12, 11, 5, ~
+## $ release_day         <dbl> 7, 26, 14, 18, 27, 15, 4, 10, 14, 29, 22, 19, 13, ~
+## $ first_actor         <chr> "LL Cool", "Adam Scott", "Kevin Hart", "Julia Loui~
+## $ first_actor_gender  <chr> NA, "male", "male", "female", "male", "male", "fem~
+## $ director_first_name <chr> "Renny", "Michael", "Tim", "Nicole", "Regardt", "W~
+## $ director_gender     <chr> "male", "male", "male", "female", NA, "male", "mal~
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#all variables}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Your Answer:}
+
+The dataset contains 505 observations and 19 variables. There are 505
+subjects, because every row is a movie and each movie title appears once
+so the number of subjects equals the number of observations. A subject
+is a single movie described by variables such as its title, budget,
+revenue, genre, runtime, release date, ratings and the first actor and
+director.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Which of the following types of variables are present in your data
+  set? (i) nominal; (ii) ordinal; (iii); continuous; (iv) discrete. If
+  present, name one example of such a variable present in your data set.
+  \textbf{[4 points]}
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#WRITE YOUR CODE HERE}
+\FunctionTok{glimpse}\NormalTok{(movies\_one)                 }\CommentTok{\# overview of variable types}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 505
+## Columns: 19
+## $ index               <dbl> 1773, 2540, 1174, 3262, 4324, 214, 1737, 610, 2738~
+## $ budget              <dbl> 2.70e+07, 1.50e+07, 4.00e+07, 0.00e+00, 0.00e+00, ~
+## $ keywords            <chr> "fbi island serial killer series of murders", "fir~
+## $ original_language   <chr> "en", "en", "en", "en", "en", "en", "en", "en", "e~
+## $ title               <chr> "Mindhunters", "Krampus", "Ride Along 2", "Enough ~
+## $ popularity          <dbl> 17.193659, 31.565117, 25.136082, 14.969093, 0.1478~
+## $ release_date        <date> 2004-05-07, 2015-11-26, 2016-01-14, 2013-09-18, 2~
+## $ revenue             <dbl> 21148829, 61548707, 124827316, 25288872, 0, 325756~
+## $ runtime             <dbl> 106, 98, 102, 93, 97, 130, 108, 99, 100, 99, 82, 1~
+## $ vote_average        <dbl> 6.3, 5.9, 6.1, 6.6, 6.0, 6.2, 5.5, 4.4, 6.0, 6.2, ~
+## $ vote_count          <dbl> 333, 584, 555, 348, 9, 597, 640, 533, 210, 371, 11~
+## $ genre               <chr> "Thriller", "Comedy", "Comedy", "Drama", "Drama", ~
+## $ release_year        <dbl> 2004, 2015, 2016, 2013, 2006, 2000, 2016, 2014, 20~
+## $ release_month       <dbl> 5, 11, 1, 9, 10, 3, 2, 1, 2, 9, 9, 12, 12, 11, 5, ~
+## $ release_day         <dbl> 7, 26, 14, 18, 27, 15, 4, 10, 14, 29, 22, 19, 13, ~
+## $ first_actor         <chr> "LL Cool", "Adam Scott", "Kevin Hart", "Julia Loui~
+## $ first_actor_gender  <chr> NA, "male", "male", "female", "male", "male", "fem~
+## $ director_first_name <chr> "Renny", "Michael", "Tim", "Nicole", "Regardt", "W~
+## $ director_gender     <chr> "male", "male", "male", "female", NA, "male", "mal~
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{unique}\NormalTok{(movies\_one}\SpecialCharTok{$}\NormalTok{genre)            }\CommentTok{\# nominal: categories without order}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "Thriller"    "Comedy"      "Drama"       "Action"      "Documentary"
+##  [6] "Family"      NA            "Adventure"   "Fantasy"     "Fiction"    
+## [11] "Horror"      "Crime"       "Romance"     "Music"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(movies\_one}\SpecialCharTok{$}\NormalTok{popularity)      }\CommentTok{\# continuous: decimal values}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+## 2.386e-03 4.759e+00 1.414e+01 2.283e+01 2.985e+01 2.037e+02
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(movies\_one}\SpecialCharTok{$}\NormalTok{vote\_count)      }\CommentTok{\# discrete: whole numbers (counts)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##     0.0    47.0   255.0   802.9   914.0 11800.0
+\end{verbatim}
+
+\textbf{Your Answer:} (i) Nominal: A nominal variable has categories
+without an order. Example genre: Thriller, Comedy, Drama, Action. Other
+examples are original\_language and director\_gender. (ii) Ordinal: An
+ordinal variable has categories with a meaningful order, but no known
+distance between them like low, medium, high. None of the variables in
+this data set is a ordered category. (iii) Continuous: Present. A
+continuous variable can take any value within a range including
+decimals. Example: popularity. Other examples are revenue, budget and
+run time. (iv) Discrete: A discrete variable can only take separate,
+countable values. Example: vote\_count, the number of votes a movie
+received. release\_month (1--12) and release\_year are other examples.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  A movie studio wants to know which types of movies give maximal
+  revenue. Perform the following steps to provide the movie studio with
+  an analysis which corresponds to their request:
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  Summarize the variable revenue and report its mean, median, maximum,
+  and minimum. \textbf{[2 points]}
+\item
+  Which movie has the highest revenue in your data set and how much is
+  this revenue. Which movie has the lowest and how much is its revenue?
+  If multiple movies have the exact same highest or lowest revenue, give
+  only one example. \textbf{[2 points]}
+\item
+  Create a histogram of the variable revenue. Make sure it has an
+  appropriate title, and appropriate titles and labels for the x- and
+  y-axis. Describe the shape of the histogram. What does this tell you
+  about the nature of making money in the movies industry?
+  \textbf{[2 points]}
+\item
+  Add a new variable to your data set: the log of revenue. When creating
+  this variable, what happens to movies for which revenue is zero? What
+  then happens when you calculate the mean of log revenue?
+  \textbf{[2 points]}
+\item
+  For movies that have a revenue of zero, replace log of revenue with
+  ``NA''. What is now the mean of log of revenue? Create a histogram for
+  log revenue, again with an appropriate title, x- and y-axis labels.
+  Describe the shape of this histogram. \textbf{[2 points]}
+\item
+  For the variables revenue and log of revenue calculate their skewness
+  and kurtosis. How do these numbers relate to the shape of the
+  histograms that you estimated under d.) and e.)? \textbf{[2 points]}
+\end{enumerate}
+
+For each step, you should provide first all the code you used to answer
+the question and then formulate an answer using full sentences.
+
+Each week consists of 1, 2, or 3 subquestions. The total amount of
+points you can earn per week is 20 points.
+
+\emph{Step a}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(movies\_one}\SpecialCharTok{$}\NormalTok{revenue)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+## 0.000e+00 0.000e+00 1.948e+07 9.482e+07 1.043e+08 2.788e+09
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mean}\NormalTok{(movies\_one}\SpecialCharTok{$}\NormalTok{revenue)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 94815482
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{median}\NormalTok{(movies\_one}\SpecialCharTok{$}\NormalTok{revenue)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 19480739
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{max}\NormalTok{(movies\_one}\SpecialCharTok{$}\NormalTok{revenue)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2787965087
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{min}\NormalTok{(movies\_one}\SpecialCharTok{$}\NormalTok{revenue)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0
+\end{verbatim}
+
+\textbf{Your Answer:} The mean revenue is about 94.8 million dollar
+(94.815.482). The median is about \$19.5 million dollar (19.480.739).
+The maximum is 2.787.965.087 dollar and the minimum is 0 dollar. The
+mean is five times higher than the median which shows that a small
+number of successful movies increase average.
+
+\emph{Step b}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#WRITE YOUR CODE HERE}
+
+\NormalTok{movies\_one[}\FunctionTok{which.max}\NormalTok{(movies\_one}\SpecialCharTok{$}\NormalTok{revenue), }
+           \FunctionTok{c}\NormalTok{(}\StringTok{"title"}\NormalTok{, }\StringTok{"revenue"}\NormalTok{)]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1 x 2
+##   title     revenue
+##   <chr>       <dbl>
+## 1 Avatar 2787965087
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{movies\_one[}\FunctionTok{which.min}\NormalTok{(movies\_one}\SpecialCharTok{$}\NormalTok{revenue), }
+           \FunctionTok{c}\NormalTok{(}\StringTok{"title"}\NormalTok{, }\StringTok{"revenue"}\NormalTok{)]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1 x 2
+##   title               revenue
+##   <chr>                 <dbl>
+## 1 Faith Like Potatoes       0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sum}\NormalTok{(movies\_one}\SpecialCharTok{$}\NormalTok{revenue }\SpecialCharTok{==} \DecValTok{0}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 160
+\end{verbatim}
+
+\textbf{Your Answer:} The movie with the highest revenue is Avatar, with
+a revenue of 2,787,965,087 dollar. The lowest revenue is 0 dollar, which
+is shared by 160 movies; one example is Faith Like Potatoes.
+
+\emph{Step c}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#WRITE YOUR CODE HERE}
+\FunctionTok{ggplot}\NormalTok{(movies\_one, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ revenue)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{bins =} \DecValTok{30}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{labels =}\NormalTok{ scales}\SpecialCharTok{::}\FunctionTok{label\_number}\NormalTok{(}\AttributeTok{scale =} \FloatTok{1e{-}6}\NormalTok{, }\AttributeTok{suffix =} \StringTok{"M"}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Histogram of movie revenue"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"Revenue (in millions of dollars)"}\NormalTok{,}
+       \AttributeTok{y =} \StringTok{"Number of movies"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{Assignment15_files/figure-latex/unnamed-chunk-5-1.pdf}}
+
+\textbf{Your Answer:} The Histogram show that a lot of movies don't make
+a lot of money. It is very right sided. Ninety percent of the movies
+earn less than 244 million dollars while the highest revenue is almost
+2.8 billion dollars. This shows that making money in the movie industry
+is very concentrated with a few movies. Most movies earn little or
+nothing while a few blockbusters earn extremely high revenues.
+
+\emph{Step d}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#WRITE YOUR CODE HERE}
+\NormalTok{movies\_one}\SpecialCharTok{$}\NormalTok{log\_revenue }\OtherTok{\textless{}{-}} \FunctionTok{log}\NormalTok{(movies\_one}\SpecialCharTok{$}\NormalTok{revenue)}
+
+\FunctionTok{sum}\NormalTok{(movies\_one}\SpecialCharTok{$}\NormalTok{revenue }\SpecialCharTok{==} \DecValTok{0}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 160
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mean}\NormalTok{(movies\_one}\SpecialCharTok{$}\NormalTok{log\_revenue)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -Inf
+\end{verbatim}
+
+\textbf{Your Answer:}
+
+For movies with a revenue of zero, the log is undefined. Rstudio returns
+-Inf (minus infinity), since log(0) = -∞. This affects 160 movies.
+Because of this the mean of log revenue is -Inf and is therefore not
+useful.
+
+\emph{Step e}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#WRITE YOUR CODE HERE}
+\NormalTok{movies\_one}\SpecialCharTok{$}\NormalTok{log\_revenue }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(movies\_one}\SpecialCharTok{$}\NormalTok{revenue }\SpecialCharTok{==} \DecValTok{0}\NormalTok{, }\ConstantTok{NA}\NormalTok{, }\FunctionTok{log}\NormalTok{(movies\_one}\SpecialCharTok{$}\NormalTok{revenue))}
+
+\FunctionTok{mean}\NormalTok{(movies\_one}\SpecialCharTok{$}\NormalTok{log\_revenue, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 17.4498
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(movies\_one, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ log\_revenue)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{bins =} \DecValTok{30}\NormalTok{, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Histogram of log revenue"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"Log of revenue"}\NormalTok{,}
+       \AttributeTok{y =} \StringTok{"Number of movies"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{Assignment15_files/figure-latex/unnamed-chunk-7-1.pdf}}
+
+\textbf{Your Answer:} When replacing the log of zero revenue with N.A.
+the mean of log revenue is about 17.45 using the left over 345 movies.
+The histogram is uni modal and left-skewed. Most values lie between
+roughly 16 and 21, with a peak around 18, and there is a thin tail to
+the left formed by a few movies with a very low positive revenue. The
+shape is much more symmetric than the histogram of the raw revenue.
+
+\emph{Step f}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#WRITE YOUR CODE HERE}
+
+\FunctionTok{skewness}\NormalTok{(movies\_one}\SpecialCharTok{$}\NormalTok{revenue)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 6.049774
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{kurtosis}\NormalTok{(movies\_one}\SpecialCharTok{$}\NormalTok{revenue)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 63.28088
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{skewness}\NormalTok{(movies\_one}\SpecialCharTok{$}\NormalTok{log\_revenue, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -2.290049
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{kurtosis}\NormalTok{(movies\_one}\SpecialCharTok{$}\NormalTok{log\_revenue, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 12.5771
+\end{verbatim}
+
+\textbf{Your Answer:}
+
+For revenue the skewness is about 6,05 and the kurtosis is about 63,3.
+For log revenue the skewness is about -2,29 and the kurtosis is about
+12,6. A skewness of 6,05 confirms the strong right skew that we see in
+the histogram of revenue, and a kurtosis far above 3 the value for a
+normal distribution means heavy tails so extreme outliers such as
+Avatar. For log revenue the skewness is negative in line with the thin
+left tail in the histogram and both numbers are much closer to those of
+a normal distribution. The kurtosis of 12,6 is still above 3, so the log
+transformation makes the distribution more symmetric but does not make
+it fully normal.
+
+\section{Week 2}\label{week-2}
+
+1 Is your dataset movies1.tsv the full population, or is it a sample of
+a larger population? If the latter, how would you describe the full
+population? \textbf{[4 points]}
+
+\emph{Your answer here:}
+
+The dataset movies1.tsv (movie\_one) is a sample not the full
+population. It contains only 505 movies, while there are thousands of
+movies released yearly, so this is clearly a smaller part rather than
+every movie that exists.
+
+2 For this question, you will assume that your data set is the full
+population.
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  What is the mean of the variable vote\_average in your data set?
+  \textbf{[2 points]}
+\item
+  Create a new data set, called movies\_sample. Make sure that it is a
+  random sample of your data set of 25 movies. What is the mean of
+  vote\_average in this random sample? How does it compare to the mean
+  of vote\_average in 2a? \textbf{[2 points]}
+\item
+  In a for loop, create 100 different samples of 25 movies, as in b, and
+  estimate the mean within each sample. Save the mean of each sample in
+  a vector called sample\_means. So the first position of the vector
+  would have the mean of the first sample, the second position the mean
+  of the second sample, etc. Print the start of this vector.
+  \textbf{[2 points]}
+\item
+  Summarize and make a histogram of sample\_means. What is the mean,
+  standard deviation and shape of its distribution? \textbf{[2 points]}
+\item
+  Using the formulas of the \emph{Central Limit Theorem}, give the
+  distribution of the sample mean of vote\_average in a sample of 25
+  movies from your population (including its expected value and standard
+  deviation). How do these values compare to your answers at d.)?
+  \textbf{[2 points]}
+\end{enumerate}
+
+\emph{Step a}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#WRITE YOUR CODE HERE}
+\FunctionTok{mean}\NormalTok{(movies\_one}\SpecialCharTok{$}\NormalTok{vote\_average)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 6.042772
+\end{verbatim}
+
+\textbf{Your Answer:}
+
+The mean of vote\_average in the full population (505 movies) is
+6.042772 \emph{Step b}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#WRITE YOUR CODE HERE}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+\NormalTok{movies\_sample }\OtherTok{\textless{}{-}}\NormalTok{ movies\_one[}\FunctionTok{sample}\NormalTok{(}\FunctionTok{nrow}\NormalTok{(movies\_one), }\DecValTok{25}\NormalTok{), ]}
+
+\FunctionTok{mean}\NormalTok{(movies\_sample}\SpecialCharTok{$}\NormalTok{vote\_average)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5.904
+\end{verbatim}
+
+\textbf{Your Answer:}
+
+The mean of vote\_average in this random sample of 25 movies is close
+(5.904) but not exactly equal to the population mean of 6.04 from the
+question before. Because the sample only contains 25 out of 505 its mean
+is affected by sampling variation: a different random sample would give
+a slightly different mean. Still, since the sample was drawn randomly it
+should on average be a reasonable estimate of the population mean
+
+\emph{Step c}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#WRITE YOUR CODE HERE}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+\NormalTok{sample\_means }\OtherTok{\textless{}{-}} \FunctionTok{numeric}\NormalTok{(}\DecValTok{100}\NormalTok{)}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{100}\NormalTok{) \{}
+\NormalTok{  sample\_i }\OtherTok{\textless{}{-}}\NormalTok{ movies\_one[}\FunctionTok{sample}\NormalTok{(}\FunctionTok{nrow}\NormalTok{(movies\_one), }\DecValTok{25}\NormalTok{), ]}
+\NormalTok{  sample\_means[i] }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(sample\_i}\SpecialCharTok{$}\NormalTok{vote\_average)}
+\NormalTok{\}}
+\FunctionTok{head}\NormalTok{(sample\_means)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5.904 5.528 6.096 6.020 6.168 5.824
+\end{verbatim}
+
+\textbf{Your Answer:}
+
+The vector sample\_means contains the mean vote\_average of 100
+different random samples of 25 movies. The first values of the vector
+are printed above with head().
+
+\emph{Step d}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#WRITE YOUR CODE HERE}
+
+\FunctionTok{summary}\NormalTok{(sample\_means)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   5.324   5.916   6.096   6.037   6.196   6.448
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sd}\NormalTok{(sample\_means)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.2337529
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\FunctionTok{data.frame}\NormalTok{(sample\_means), }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ sample\_means)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{bins =} \DecValTok{15}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Histogram of sample means of vote\_average (100 samples of n = 25)"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"Sample mean of vote\_average"}\NormalTok{,}
+       \AttributeTok{y =} \StringTok{"Number of samples"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{Assignment15_files/figure-latex/unnamed-chunk-12-1.pdf}}
+
+\textbf{Your Answer:}
+
+The mean of sample\_means is approximately 6.037 and is very close to
+the population mean of 6.04. The standard deviation of sample\_means is
+approximately 0.2337529. The histogram is bell-shaped centered around a
+sample mean of roughly 6.037, with a slight left skew. This shape is
+close to what the Central Limit Theorem predicts: even though only 100
+samples were drawn, the distribution of sample means already resembles a
+normal distribution.
+
+\emph{Step e}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pop\_mean }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(movies\_one}\SpecialCharTok{$}\NormalTok{vote\_average)}
+\NormalTok{pop\_sd }\OtherTok{\textless{}{-}} \FunctionTok{sd}\NormalTok{(movies\_one}\SpecialCharTok{$}\NormalTok{vote\_average)}
+
+\NormalTok{pop\_mean                     }\CommentTok{\# expected value of the sample mean}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 6.042772
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pop\_sd }\SpecialCharTok{/} \FunctionTok{sqrt}\NormalTok{(}\DecValTok{25}\NormalTok{)            }\CommentTok{\# standard deviation (standard error) of the sample mean}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.2383468
+\end{verbatim}
+
+\textbf{Your Answer:}
+
+According to the Central Limit Theorem, for a large enough sample size
+the distribution of the sample mean is approximately normal, with
+expected value equal to the population mean, \mu = 6.043, and standard
+deviation (standard error) equal to \sigma / \sqrt{n} = 1.192 /
+\sqrt{25} \approx 0.238\$. This is very close to what we found by
+simulation in d.: a mean of 6.096and a standard deviation of 0.2337529.
+The small differences are due to sampling variation, since we only drew
+100 samples rather than an infinite number of samples. This confirms the
+Central Limit Theorem: even though the original variable
+\texttt{vote\_average} is not perfectly normally distributed, the
+distribution of its sample mean is approximately normal and centered on
+the population mean, with a spread that shrinks as the sample size n
+increases.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Is there a variable in your data set which you would expect to follow
+  a discrete uniform distribution? Explain, without looking at the data,
+  why you expect this data to be discrete uniform. If the data would
+  indeed follow a discrete uniform distribution, what would you expect
+  the mean and standard deviation of this variable to be? Next, plot a
+  histogram of the variable, and plot an appropriate discrete uniform
+  distribution on top of this histogram. Comment whether the variable
+  indeed follows this expected distribution. If the distribution
+  deviates from the discrete uniform distribution, explain why this is
+  the case. \textbf{[6 points]}
+\end{enumerate}
+
+\textbf{Your Answer:}
+
+we expect release\_month (the month in which a movie is released, 1--12)
+to follow a discrete uniform distribution. Without looking at the data,
+there is no a priori reason why movies would be more likely to release
+in one particular month than another: a movie can in principle be
+released in any of the 12 months, and each month is equally likely if
+release timing were purely random. For a discrete uniform distribution
+on the integers 1 to 12, the expected mean is
+\(E(X) = \frac{1+n}{2} = \frac{1+12}{2} = 6.5\), and the expected
+standard deviation is
+\(SD(X) = \sqrt{\frac{n^2-1}{12}} = \sqrt{\frac{144-1}{12}} \approx 3.45\).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#WRITE YOUR CODE HERE}
+\CommentTok{\# Theoretical values for a discrete uniform distribution on \{1, 2, ..., 12\}}
+\NormalTok{n }\OtherTok{\textless{}{-}} \DecValTok{12}
+\NormalTok{theoretical\_mean }\OtherTok{\textless{}{-}}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{+}\NormalTok{ n) }\SpecialCharTok{/} \DecValTok{2}
+\NormalTok{theoretical\_sd }\OtherTok{\textless{}{-}} \FunctionTok{sqrt}\NormalTok{((n}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{{-}} \DecValTok{1}\NormalTok{) }\SpecialCharTok{/} \DecValTok{12}\NormalTok{)}
+
+\NormalTok{theoretical\_mean}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 6.5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{theoretical\_sd}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3.452053
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Actual mean and sd in the data}
+\FunctionTok{mean}\NormalTok{(movies\_one}\SpecialCharTok{$}\NormalTok{release\_month)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 6.968317
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sd}\NormalTok{(movies\_one}\SpecialCharTok{$}\NormalTok{release\_month)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3.462811
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Histogram with the discrete uniform distribution overlaid}
+\FunctionTok{ggplot}\NormalTok{(movies\_one, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ release\_month)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =} \FunctionTok{after\_stat}\NormalTok{(count)), }\AttributeTok{binwidth =} \DecValTok{1}\NormalTok{, }\AttributeTok{boundary =} \FloatTok{0.5}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_hline}\NormalTok{(}\AttributeTok{yintercept =} \FunctionTok{nrow}\NormalTok{(movies\_one) }\SpecialCharTok{/}\NormalTok{ n, }\AttributeTok{color =} \StringTok{"red"}\NormalTok{, }\AttributeTok{linewidth =} \DecValTok{1}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{scale\_x\_continuous}\NormalTok{(}\AttributeTok{breaks =} \DecValTok{1}\SpecialCharTok{:}\DecValTok{12}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Histogram of release month vs. discrete uniform distribution"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"Release month"}\NormalTok{,}
+       \AttributeTok{y =} \StringTok{"Number of movies"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{Assignment15_files/figure-latex/unnamed-chunk-13-1.pdf}}
+
+\textbf{Your Answer:}
+
+I expect \texttt{release\_month} (1--12) to follow a discrete uniform
+distribution, since there is no a priori reason a movie would be more
+likely to release in one month than another. For a discrete uniform
+distribution on \{1, \ldots, 12\}, the expected mean is
+\(\frac{1+12}{2} = 6.5\) and the expected standard deviation is
+\(\sqrt{\frac{12^2-1}{12}} \approx 3.45\). The observed mean (6.97) and
+standard deviation (3.46) are close to these theoretical values, but the
+histogram shows the distribution is not truly uniform: there is a clear
+peak around September--October and relatively low counts in February and
+April. This deviates from the flat pattern expected under a discrete
+uniform distribution. This makes sense because release timing is not
+random: studios strategically schedule releases around the autumn
+festival season, while months like February and April are typically
+considered weaker box-office periods and are avoided for major releases.
+
+\section{Week 3}\label{week-3}
+
+For the next part of the assignment, assume that the movies in your data
+frame are a random sample of a larger population of movies.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Give a 90 percent confidence interval for the variable \emph{revenue}.
+  Interpret the result. \textbf{[2 points]}
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#WRITE YOUR CODE HERE}
+
+
+\NormalTok{n }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(movies\_one}\SpecialCharTok{$}\NormalTok{revenue)}
+\NormalTok{mean\_revenue }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(movies\_one}\SpecialCharTok{$}\NormalTok{revenue)}
+\NormalTok{sd\_revenue }\OtherTok{\textless{}{-}} \FunctionTok{sd}\NormalTok{(movies\_one}\SpecialCharTok{$}\NormalTok{revenue)}
+\NormalTok{se\_revenue }\OtherTok{\textless{}{-}}\NormalTok{ sd\_revenue }\SpecialCharTok{/} \FunctionTok{sqrt}\NormalTok{(n)}
+
+\NormalTok{t\_crit }\OtherTok{\textless{}{-}} \FunctionTok{qt}\NormalTok{(}\FloatTok{0.95}\NormalTok{, }\AttributeTok{df =}\NormalTok{ n }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{)}
+
+\NormalTok{lower }\OtherTok{\textless{}{-}}\NormalTok{ mean\_revenue }\SpecialCharTok{{-}}\NormalTok{ t\_crit }\SpecialCharTok{*}\NormalTok{ se\_revenue}
+\NormalTok{upper }\OtherTok{\textless{}{-}}\NormalTok{ mean\_revenue }\SpecialCharTok{+}\NormalTok{ t\_crit }\SpecialCharTok{*}\NormalTok{ se\_revenue}
+
+\NormalTok{lower}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 79639410
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{upper}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 109991553
+\end{verbatim}
+
+\textbf{Your Answer:}
+
+The 90\% confidence interval for the mean revenue is approximately
+{[}79,639,410 ; 109,991,553{]}. This means that if we were to repeat
+this sampling many times and construct a 90\% confidence interval each
+time, about 90\% of those intervals would contain the real population
+mean of the revenue. We are 90\% confident that the true mean revenue of
+the full population of movies lies between roughly 79.6 and 110.0
+million dollar.
+
+2
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  How many movies in your sample were directed by a male director? How
+  many by a female director? \textbf{[2 points]}
+\item
+  Test the null hypothesis that the chance that a movie is being
+  directed by a male or female director is equal. Clearly state your
+  null hypothesis and alternative hypothesis, and your chosen
+  significance level. Use an appropriate R function to test your
+  hypothesis, and state your conclusion. Also give the p-value that
+  corresponds to your test statistic. \textbf{[2 points]}
+\item
+  Recode revenue such that it is measured in millions of dollars. What
+  is the variance of revenue for movies with a male director? What is
+  the variance of revenue for movies with a female director?
+  \textbf{[2 points]}
+\item
+  Assume that the variance of revenue for movies with a male director in
+  your data is the same as the variance for movies with a male director
+  in your population (that is, there is no sampling uncertainty in this
+  estimate). Now, set up a hypothesis test to test for the null
+  hypothesis that the variance of revenue for movies with a female
+  director is equal to the variance for movies with a male director.
+  Clearly state your null hypothesis and alternative hypothesis, and
+  your chosen significance level. Calculate your test statistic and tell
+  how your test statistic is distributed, and state your conclusion.
+  Also give the p-value that corresponds to your test statistic.
+  \textbf{[2 points]}
+\end{enumerate}
+
+\emph{step a}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#WRITE YOUR CODE HERE}
+
+\FunctionTok{table}\NormalTok{(movies\_one}\SpecialCharTok{$}\NormalTok{director\_gender)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## female   male 
+##     44    426
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sum}\NormalTok{(movies\_one}\SpecialCharTok{$}\NormalTok{director\_gender }\SpecialCharTok{==} \StringTok{"male"}\NormalTok{, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 426
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sum}\NormalTok{(movies\_one}\SpecialCharTok{$}\NormalTok{director\_gender }\SpecialCharTok{==} \StringTok{"female"}\NormalTok{, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 44
+\end{verbatim}
+
+\textbf{Your Answer:}
+
+In the sample, 426 movies were directed by a male director and 44 movies
+by a female director. There are also 35 movies with a missing (NA) value
+for director\_gender
+
+\emph{step b}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#WRITE YOUR CODE HERE}
+
+\FunctionTok{binom.test}\NormalTok{(}\AttributeTok{x =} \DecValTok{426}\NormalTok{, }\AttributeTok{n =} \DecValTok{426} \SpecialCharTok{+} \DecValTok{44}\NormalTok{, }\AttributeTok{p =} \FloatTok{0.5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Exact binomial test
+## 
+## data:  426 and 426 + 44
+## number of successes = 426, number of trials = 470, p-value < 2.2e-16
+## alternative hypothesis: true probability of success is not equal to 0.5
+## 95 percent confidence interval:
+##  0.8763630 0.9311527
+## sample estimates:
+## probability of success 
+##               0.906383
+\end{verbatim}
+
+\textbf{Your Answer:}
+
+Null hypothesis H0: the probability that a movie is directed by a male
+director is P = 0.5 (male and female directors are equally likely).
+Alternative hypothesis H1:** \(p \neq 0.5\). Significance level:**
+\(\alpha = 0.05\). Of the 470 movies with a known director gender, 426
+were directed by a man. A two-sided binomial test against \(p = 0.5\)
+gives a test statistic based on 426 successes out of 470 trials, with a
+p-value that is essentially 0 (far below 0.001). Because the p-value is
+much smaller than \(\alpha = 0.05\), we reject the null hypothesis.
+There is very strong evidence that male and female directors are not
+equally likely in this population; movies are directed by men far more
+often than by women.
+
+\emph{step c}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#WRITE YOUR CODE HERE}
+
+\NormalTok{movies\_one}\SpecialCharTok{$}\NormalTok{revenue\_millions }\OtherTok{\textless{}{-}}\NormalTok{ movies\_one}\SpecialCharTok{$}\NormalTok{revenue }\SpecialCharTok{/} \FloatTok{1e6}
+
+\FunctionTok{var}\NormalTok{(movies\_one}\SpecialCharTok{$}\NormalTok{revenue\_millions[movies\_one}\SpecialCharTok{$}\NormalTok{director\_gender }\SpecialCharTok{==} \StringTok{"male"}\NormalTok{], }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 48054.81
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{var}\NormalTok{(movies\_one}\SpecialCharTok{$}\NormalTok{revenue\_millions[movies\_one}\SpecialCharTok{$}\NormalTok{director\_gender }\SpecialCharTok{==} \StringTok{"female"}\NormalTok{], }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 17490.31
+\end{verbatim}
+
+\textbf{Your Answer:}
+
+After recording revenue into millions of dollars, the variance of
+revenue for movies with a male director is approximately 48,055 (million
+squared), and for movies with a female director it is approximately
+17,490 (million squared).
+
+\emph{step d}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#WRITE YOUR CODE HERE}
+
+\NormalTok{sigma\_sq\_male }\OtherTok{\textless{}{-}} \FunctionTok{var}\NormalTok{(movies\_one}\SpecialCharTok{$}\NormalTok{revenue\_millions[movies\_one}\SpecialCharTok{$}\NormalTok{director\_gender }\SpecialCharTok{==} \StringTok{"male"}\NormalTok{], }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)  }\CommentTok{\# treated as known population variance}
+\NormalTok{s\_sq\_female }\OtherTok{\textless{}{-}} \FunctionTok{var}\NormalTok{(movies\_one}\SpecialCharTok{$}\NormalTok{revenue\_millions[movies\_one}\SpecialCharTok{$}\NormalTok{director\_gender }\SpecialCharTok{==} \StringTok{"female"}\NormalTok{], }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{n\_female }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(movies\_one}\SpecialCharTok{$}\NormalTok{director\_gender }\SpecialCharTok{==} \StringTok{"female"}\NormalTok{, }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+
+\NormalTok{chi\_sq\_stat }\OtherTok{\textless{}{-}}\NormalTok{ (n\_female }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{) }\SpecialCharTok{*}\NormalTok{ s\_sq\_female }\SpecialCharTok{/}\NormalTok{ sigma\_sq\_male}
+\NormalTok{chi\_sq\_stat}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 15.65053
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df }\OtherTok{\textless{}{-}}\NormalTok{ n\_female }\SpecialCharTok{{-}} \DecValTok{1}
+\NormalTok{df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 43
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p\_value }\OtherTok{\textless{}{-}} \DecValTok{2} \SpecialCharTok{*} \FunctionTok{min}\NormalTok{(}\FunctionTok{pchisq}\NormalTok{(chi\_sq\_stat, df), }\DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{pchisq}\NormalTok{(chi\_sq\_stat, df))}
+\NormalTok{p\_value}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 8.252287e-05
+\end{verbatim}
+
+\textbf{Your Answer:}
+
+H0: \(\sigma^2_{female} = \sigma^2_{male}\) (≈48,055, treated as a known
+population value). \textbf{\(H_1\):}
+\(\sigma^2_{female} \neq \sigma^2_{male}\). \(\alpha = 0.05\). Since
+\(\sigma^2_{male}\) is known, we test \(s^2_{female}\) against it using
+\(\chi^2 = \frac{(n-1)s^2_{female}}{\sigma^2_{male}}\), which follows a
+chi-square distribution with \(n-1 = 43\) degrees of freedom under
+\(H_0\). The test statistic is \(\chi^2 \approx 15.65\), giving a
+two-sided p-value of approximately 0.00008. Since this is well below
+\(\alpha = 0.05\), wereject H0: the variance of revenue for
+female-directed movies differs from (and is lower than) that for
+male-directed movies.
+
+3
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  Create a scatter plot with year on the x axis and mean of revenue
+  within that year on the y-axis. Make sure it has an appropriate title,
+  and appropriate titles and labels for the x- and y-axis. Is revenue of
+  movies increasing or decreasing over time? \textbf{[3 points]}
+\item
+  Recreate the scatter plot with year on the x axis and mean\_revenue on
+  the y-axis, but now add bars around each point, indicating the 95\%
+  confidence interval. \textbf{[3 points]}
+\item
+  If you look closely at the resulting plot in b.), you will probably
+  see that the confidence intervals in some years are wider than in
+  other years. What are some possible reasons that a confidence interval
+  in a given year can be wide? Can you verify this using your data?
+  \textbf{[4 points]}
+\end{enumerate}
+
+\emph{step a}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#WRITE YOUR CODE HERE}
+\NormalTok{yearly\_revenue }\OtherTok{\textless{}{-}}\NormalTok{ movies\_one }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(release\_year) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarize}\NormalTok{(}\AttributeTok{mean\_revenue =} \FunctionTok{mean}\NormalTok{(revenue))}
+
+\FunctionTok{ggplot}\NormalTok{(yearly\_revenue, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ release\_year, }\AttributeTok{y =}\NormalTok{ mean\_revenue)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Mean movie revenue by release year"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"Release year"}\NormalTok{,}
+       \AttributeTok{y =} \StringTok{"Mean revenue (dollars)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{Assignment15_files/figure-latex/unnamed-chunk-19-1.pdf}}
+
+\textbf{Your Answer:}
+
+The scatter plot does not show a clear upward or downward trend in mean
+revenue over time. There is a lot of variation each year with some years
+showing very high average revenue and others much lower but no strong
+overall pattern. \emph{step b}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#WRITE YOUR CODE HERE}
+\NormalTok{yearly\_revenue }\OtherTok{\textless{}{-}}\NormalTok{ movies\_one }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(release\_year) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarize}\NormalTok{(}\AttributeTok{mean\_revenue =} \FunctionTok{mean}\NormalTok{(revenue),}
+            \AttributeTok{sd\_revenue =} \FunctionTok{sd}\NormalTok{(revenue),}
+            \AttributeTok{n =} \FunctionTok{n}\NormalTok{(),}
+            \AttributeTok{se =}\NormalTok{ sd\_revenue }\SpecialCharTok{/} \FunctionTok{sqrt}\NormalTok{(n),}
+            \AttributeTok{t\_crit =} \FunctionTok{qt}\NormalTok{(}\FloatTok{0.975}\NormalTok{, }\AttributeTok{df =}\NormalTok{ n }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{),}
+            \AttributeTok{ci\_lower =}\NormalTok{ mean\_revenue }\SpecialCharTok{{-}}\NormalTok{ t\_crit }\SpecialCharTok{*}\NormalTok{ se,}
+            \AttributeTok{ci\_upper =}\NormalTok{ mean\_revenue }\SpecialCharTok{+}\NormalTok{ t\_crit }\SpecialCharTok{*}\NormalTok{ se)}
+
+\FunctionTok{ggplot}\NormalTok{(yearly\_revenue, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ release\_year, }\AttributeTok{y =}\NormalTok{ mean\_revenue)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{geom\_errorbar}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{ymin =}\NormalTok{ ci\_lower, }\AttributeTok{ymax =}\NormalTok{ ci\_upper)) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Mean movie revenue by release year, with 95\% confidence intervals"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"Release year"}\NormalTok{,}
+       \AttributeTok{y =} \StringTok{"Mean revenue (dollars)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{Assignment15_files/figure-latex/unnamed-chunk-20-1.pdf}}
+
+\textbf{Your Answer:}
+
+The plot now shows the mean revenue per year together with a 95\%
+confidence interval around each point, illustrating how precisely the
+mean is estimated for each year.
+
+\emph{step c}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#WRITE YOUR CODE HERE}
+\NormalTok{yearly\_revenue }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(ci\_upper }\SpecialCharTok{{-}}\NormalTok{ ci\_lower)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(release\_year, n, sd\_revenue, ci\_lower, ci\_upper)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 27 x 5
+##    release_year     n sd_revenue    ci_lower   ci_upper
+##           <dbl> <int>      <dbl>       <dbl>      <dbl>
+##  1         1991     3 267045531. -451150178. 875605571.
+##  2         1992     3 129834690. -112623364. 532431134.
+##  3         1994     7 292685338. -139072255. 402305326.
+##  4         2009    37 502939570.   57838647. 393215449.
+##  5         2016    19 338706404.   35872184. 362374706.
+##  6         1995     9 116438509.  -13443845. 165561277.
+##  7         2012    36 256066373.   44614323. 217895114.
+##  8         1998    15 135533982.    7875376. 157987811.
+##  9         2011    22 157312285.   57549114. 197045834.
+## 10         2000    19 141945943.   20026655. 156858164.
+## # i 17 more rows
+\end{verbatim}
+
+\textbf{Your Answer:}
+
+A confidence interval for a given year can be wide for two main reasons:
+(1) a small sample size in that year, since the standard error is
+s/\sqrt{n} and shrinks as n grows, and (2) a large standard deviation of
+revenue within that year, meaning revenue values are very spread out
+(e.g.~a mix of blockbusters and low-revenue movies). This can indeed be
+verified in the data. For example, 1991 and 1992 have only 3 movies
+each, and their confidence intervals are among the widest in the plot,
+showing that a small sample size drives up the width. Similarly, 2009
+has a much larger sample (37 movies) but still has one of the widest
+intervals, because its standard deviation of revenue is very high
+(movies that year ranged from low-revenue films to a very high-grossing
+blockbuster). In contrast, years like 1993 have both a small n and a low
+standard deviation, resulting in a narrow interval. So both a small
+sample size and high within-year variability contribute to wider
+confidence intervals, and the data confirms that both factors are
+present in different years.
+
+\section{Week 4}\label{week-4}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  There is an argument going on in the movie studio. \emph{Bob} claims
+  that production budgets are getting out of hand, and that the studio
+  should focus on making cheaper movies. \emph{Chantal} disagrees. She
+  tells Bob that ``Every dollar we spend on movie production is more
+  than offset by the increase in movie revenue'\,'.
+\end{enumerate}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  Set up a regression model to test Chantal's claim, and estimate it.
+  That is, estimate:
+  \[\text{Revenue}_i=\beta_0+\beta_1 \text{Budget}_i +\varepsilon_i.\]
+  Print a summary of your estimated model. \textbf{[2 points]}
+\item
+  What is the estimated value of \(\beta_1\) and how do you interpet it?
+  \textbf{[2 points]}
+\item
+  Test for the null hypothesis that \(\beta_1 \leq 1\). Report the
+  p-value and state your conclusion. \textbf{[2 points]}
+\item
+  Next, estimate the model
+  \[\text{Log Revenue}_i=\beta_0+\beta_1 \text{Log Budget}_i +\varepsilon_i.\]
+  When creating the variables Log Revenue and Log Budget, make sure that
+  movies with a Revenue or Budget of zero are assigned the value ``NA''.
+  Print a summary of your estimated model. \textbf{[2 points]}
+\item
+  What is the estimated value of \(\beta_1\) and how do you interpet it?
+  \textbf{[2 points]}
+\item
+  Which model has better fit? The level-level model or the log-log
+  model? Explain. \textbf{[2 points]}
+\item
+  Who do you think is correct? Bob or Chantal? What would you advise the
+  movie studio to do? \textbf{[2 points]}
+\end{enumerate}
+
+\emph{step a}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#WRITE YOUR CODE HERE}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Your Answer:}
+
+Write your formulated response here.
+
+\emph{step b}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#WRITE YOUR CODE HERE}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Your Answer:}
+
+Write your formulated response here.
+
+\emph{step c}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#WRITE YOUR CODE HERE}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Your Answer:}
+
+Write your formulated response here.
+
+\emph{step d}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#WRITE YOUR CODE HERE}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Your Answer:}
+
+Write your formulated response here.
+
+\emph{step e}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#WRITE YOUR CODE HERE}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Your Answer:}
+
+Write your formulated response here.
+
+\emph{step f}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#WRITE YOUR CODE HERE}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Your Answer:}
+
+Write your formulated response here.
+
+\emph{step g}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#WRITE YOUR CODE HERE}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Your Answer:}
+
+Write your formulated response here.
+
+2
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  Make a scatterplot with log revenue on the y-axis, and log budget on
+  the x-axis. Within the same scatterplot, draw a straight line which
+  summarizes the association between the log of revenue and log of
+  budget. \textbf{[3 points]}
+\item
+  Using the insights from the scatterplot, your linear model, and your
+  data, find an example of a movie that vastly overperformed. That
+  means, find a movie that had much more revenue than expected, given
+  its budget. For this movie, report its log of revenue, its predicted
+  log of revenue, and its residual. \textbf{[3 points]}
+\end{enumerate}
+
+\emph{step a}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#WRITE YOUR CODE HERE}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Your Answer:}
+
+Write your formulated response here.
+
+\emph{step b}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#WRITE YOUR CODE HERE}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Your Answer:}
+
+Write your formulated response here.
+
+\section{Week 5}\label{week-5}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  Make a frequency table of the variable genre. Which are the three
+  genres that occur the most? \textbf{[2 points]}
+\item
+  Create a new variable called genre2. Make sure that the three most
+  popular genres remain the same, but that all the other genres get
+  categorized into one genre called ``Other''. Report a frequency table
+  of this new variable genre2. \textbf{[2 points]}
+\item
+  Estimate an OLS model which has as dependent variable the log of
+  revenue of a movie, and as independent variable the log of budget, a
+  dummy for each level that genre2 can take, and the year of release.
+  Show a summary of the resulting model and interpret each coefficient.
+  \textbf{[4 points]}
+\end{enumerate}
+
+The movie studio that you work at is releasing a new movie in 2026. It
+will be a Drama movie with a budget of 20,000,0000. It will have a
+runtime of 120 minutes.
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Estimate a model that is able to predict the revenue of this movie.
+  Give its predicted revenue and include a 90\% prediction interval.
+  \textbf{[5 points]}
+\item
+  Plot the residuals against various independent variables in the model.
+  Do you find any evidence of heteroskedasticity? \textbf{[2 points]}
+\item
+  One executive at the studio wants to time the release of the movie to
+  a specific month of the year such that they can maximize revenue.
+  Another executive is of the opinion that the month in which the movie
+  is released will not have a big impact on its revenue. Estimate a
+  model that can test whether the month of release impacts the revenue
+  of a movie. Use an appropriate hypothesis test to test whether month
+  of release matters. What would you advise the movie studio regarding
+  the timing of the release of the movie? \textbf{[5 points]}
+\end{enumerate}
+
+\emph{step a}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#WRITE YOUR CODE HERE}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Your Answer:}
+
+Write your formulated response here.
+
+\emph{step b}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#WRITE YOUR CODE HERE}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Your Answer:}
+
+Write your formulated response here.
+
+\emph{step c}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#WRITE YOUR CODE HERE}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Your Answer:}
+
+Write your formulated response here.
+
+\emph{step d}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#WRITE YOUR CODE HERE}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Your Answer:}
+
+Write your formulated response here.
+
+\emph{step e}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#WRITE YOUR CODE HERE}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Your Answer:}
+
+Write your formulated response here.
+
+\emph{step f}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#WRITE YOUR CODE HERE}
+\end{Highlighting}
+\end{Shaded}
+
+
+\end{document}
