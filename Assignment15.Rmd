@@ -475,30 +475,62 @@ c. If you look closely at the resulting plot in b.), you will probably see that 
 
 ```{r}
 #WRITE YOUR CODE HERE
+yearly_revenue <- movies_one %>%
+  group_by(release_year) %>%
+  summarize(mean_revenue = mean(revenue))
 
+ggplot(yearly_revenue, aes(x = release_year, y = mean_revenue)) +
+  geom_point() +
+  labs(title = "Mean movie revenue by release year",
+       x = "Release year",
+       y = "Mean revenue (dollars)")
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
-
+The scatter plot does not show a clear upward or downward trend in mean revenue over time. There is a lot of variation each year with some years showing very high average revenue and others much lower but no strong overall pattern.
 *step b*
 
 ```{r}
 #WRITE YOUR CODE HERE
+yearly_revenue <- movies_one %>%
+  group_by(release_year) %>%
+  summarize(mean_revenue = mean(revenue),
+            sd_revenue = sd(revenue),
+            n = n(),
+            se = sd_revenue / sqrt(n),
+            t_crit = qt(0.975, df = n - 1),
+            ci_lower = mean_revenue - t_crit * se,
+            ci_upper = mean_revenue + t_crit * se)
+
+ggplot(yearly_revenue, aes(x = release_year, y = mean_revenue)) +
+  geom_point() +
+  geom_errorbar(aes(ymin = ci_lower, ymax = ci_upper)) +
+  labs(title = "Mean movie revenue by release year, with 95% confidence intervals",
+       x = "Release year",
+       y = "Mean revenue (dollars)")
 
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+The plot now shows the mean revenue per year together with a 95% confidence interval around each point, illustrating how precisely the mean is estimated for each year.
 
 *step c*
 
 ```{r}
 #WRITE YOUR CODE HERE
+yearly_revenue %>%
+  arrange(desc(ci_upper - ci_lower)) %>%
+  select(release_year, n, sd_revenue, ci_lower, ci_upper)
 
 ```
+
+**Your Answer:**
+
+**Your Answer:**
+
+A confidence interval for a given year can be wide for two main reasons: (1) a small sample size in that year, since the standard error is s/\sqrt{n} and shrinks as n grows, and (2) a large standard deviation of revenue within that year, meaning revenue values are very spread out (e.g. a mix of blockbusters and low-revenue movies). This can indeed be verified in the data. For example, 1991 and 1992 have only 3 movies each, and their confidence intervals are among the widest in the plot, showing that a small sample size drives up the width. Similarly, 2009 has a much larger sample (37 movies) but still has one of the widest intervals, because its standard deviation of revenue is very high (movies that year ranged from low-revenue films to a very high-grossing blockbuster). In contrast, years like 1993 have both a small n and a low standard deviation, resulting in a narrow interval. So both a small sample size and high within-year variability contribute to wider confidence intervals, and the data confirms that both factors are present in different years.
 
 # Week 4 
 
