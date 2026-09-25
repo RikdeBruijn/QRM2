@@ -26,10 +26,6 @@ format:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-```
-
-
-```{r setup, include=FALSE}
 #packages used
 #install.packages("tidyverse") 
 #install.packages("yaml")
@@ -47,12 +43,11 @@ library(readxl)
 library(cbsodataR)
 library(sf)
 library(moments)
-
-
 ```
 
 
-```{r setup, include=FALSE}
+
+```{r setup2, include=FALSE}
 #renaming and reading data
 movies_one <- read_tsv("Data/movies1.tsv")
 ```
