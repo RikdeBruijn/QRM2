@@ -324,14 +324,14 @@ pop_sd / sqrt(25)            # standard deviation (standard error) of the sample
 
 **Your Answer:**
 
-According to the Central Limit Theorem, for a large enough sample size the distribution of the sample mean is approximately normal, with expected value equal to the population mean, $\mu = 6.043$, and standard deviation (standard error) equal to $\sigma / \sqrt{n} = 1.192 / \sqrt{25} \approx 0.238$.
-This is very close to what we found by simulation in d.: a mean of [jouw mean uit d, bijvoorbeeld ≈6.0–6.1] and a standard deviation of [jouw sd uit d, bijvoorbeeld ≈0.25–0.27]. The small differences are due to sampling variation, since we only drew 100 samples rather than an infinite number of samples. This confirms the Central Limit Theorem: even though the original variable `vote_average` is not perfectly normally distributed, the distribution of its sample mean is approximately normal and centered on the population mean, with a spread that shrinks as the sample size $n$ increases.
+According to the Central Limit Theorem, for a large enough sample size the distribution of the sample mean is approximately normal, with expected value equal to the population mean, \mu = 6.043, and standard deviation (standard error) equal to \sigma / \sqrt{n} = 1.192 / \sqrt{25} \approx 0.238$.
+This is very close to what we found by simulation in d.: a mean of 6.096and a standard deviation of 0.2337529. The small differences are due to sampling variation, since we only drew 100 samples rather than an infinite number of samples. This confirms the Central Limit Theorem: even though the original variable `vote_average` is not perfectly normally distributed, the distribution of its sample mean is approximately normal and centered on the population mean, with a spread that shrinks as the sample size n increases.
 
 3. Is there a variable in your data set which you would expect to follow a discrete uniform distribution? Explain, without looking at the data, why you expect this data to be discrete uniform. If the data would indeed follow a discrete uniform distribution, what would you expect the mean and standard deviation of this variable to be? Next, plot a histogram of the variable, and plot an appropriate discrete uniform distribution on top of this histogram. Comment whether the variable indeed follows this expected distribution. If the distribution deviates from the discrete uniform distribution, explain why this is the case. \textbf{[6 points]}
 
 **Your Answer:**
 
-Write your formulated response here.
+ we expect release_month (the month in which a movie is released, 1–12) to follow a discrete uniform distribution. Without looking at the data, there is no a priori reason why movies would be more likely to release in one particular month than another: a movie can in principle be released in any of the 12 months, and each month is equally likely if release timing were purely random. For a discrete uniform distribution on the integers 1 to 12, the expected mean is $E(X) = \frac{1+n}{2} = \frac{1+12}{2} = 6.5$, and the expected standard deviation is $SD(X) = \sqrt{\frac{n^2-1}{12}} = \sqrt{\frac{144-1}{12}} \approx 3.45$.
 
 ```{r}
 #WRITE YOUR CODE HERE
