@@ -80,7 +80,7 @@ The use of generative AI is \textbf{not} permitted and may result in a grade of 
 
 To answer the assignment, you can simply fill out this R markdown document. There are designated places which you can fill with R code. There are also designated spaces for you to answer each question. Often, the structure of an answer will be as follows. First, you type the R code in the designated box. This will show how you analyzed the data to get the answer to the question. Below the box for the R code, you will then summarize your answer to the question, i.e. what are the conclusions that you draw from the data analysis? 
 
-When handing in, you are supposed to submit this .Rmd file, and a knitted version of this document. You can knit this document to pdf, word, or html. Knitting to pdf requires you to have a .tex distribution installed on your computer. Knitting to Word requires you to have Word installed. jjfjf
+When handing in, you are supposed to submit this .Rmd file, and a knitted version of this document. You can knit this document to pdf, word, or html. Knitting to pdf requires you to have a .tex distribution installed on your computer. Knitting to Word requires you to have Word installed. 
 
 The exercises are designed such that you should be able to finish the majority of them during the tutorial each week. If you are not able to finish them fully during that time, you are expected to work on it in your own time using the computers on campus or your own device. It is best to meet as a group in-person when working together. If you want to work remotely, github is a good platform to guarantee smooth collaboration. Alternatively, you can email this .Rmd file back and forth to one another as a group, but this is not recommended as it is more cumbersome.
 
@@ -104,8 +104,7 @@ glimpse(movies_one)
 ```
 **Your Answer:**
 
-Write your response here.
-The dataset contains 505 observations and 19 variables. There are 505 subjects because every row is a movie each movie title appears once so the number of subjects equals the number of observations. A subject is a single movie described by variables such as its title, budget, revenue, genre, runtime, release date, ratings and the first actor and director.
+The dataset contains 505 observations and 19 variables. There are 505 subjects, because every row is a movie and each movie title appears once so the number of subjects equals the number of observations. A subject is a single movie described by variables such as its title, budget, revenue, genre, runtime, release date, ratings and the first actor and director.
 
 2. Which of the following types of variables are present in your data set? (i) nominal; (ii) ordinal; (iii); continuous; (iv) discrete. If present, name one example of such a variable present in your data set. \textbf{[4 points]}
 
@@ -120,9 +119,9 @@ summary(movies_one$vote_count)      # discrete: whole numbers (counts)
 ```
 
 **Your Answer:**
-(i) Nominal: A nominal variable has categories without a order. Example genre Thriller, Comedy, Drama, Action. Other examples are original_language and director_gender.
-(ii) Ordinal: . An ordinal variable has categories with a meaningful order, but no known distance between them like low, medieum, high. None of the variables in this dataset is a  ordered category. 
-(iii) Continuous: present. A continuous variable can take any value within a range including decimals example: popularity. Other examples are revenue, budget and runtime.
+(i) Nominal: A nominal variable has categories without an order. Example genre: Thriller, Comedy, Drama, Action. Other examples are original_language and director_gender.
+(ii) Ordinal: An ordinal variable has categories with a meaningful order, but no known distance between them like low, medium, high. None of the variables in this data set is a  ordered category. 
+(iii) Continuous: Present. A continuous variable can take any value within a range including decimals. Example: popularity. Other examples are revenue, budget and run time.
 (iv) Discrete: A discrete variable can only take separate, countable values. Example: vote_count, the number of votes a movie received. release_month (1–12) and release_year are other examples.
 
 
@@ -149,7 +148,7 @@ max(movies_one$revenue)
 min(movies_one$revenue)
 ```
 **Your Answer:**
-The mean revenue is about 94.8 million dollar (94.815.482) the median is about $19.5 million (19.480.739) the maximum is 2.787.965.087 dollar and the minimum is 0 dollar. The mean is five times higher than the median which shows that a small number of  successful movies increase  average.
+The mean revenue is about 94.8 million dollar (94.815.482). The median is about $19.5 million dollar (19.480.739). The maximum is 2.787.965.087 dollar and the minimum is 0 dollar. The mean is five times higher than the median which shows that a small number of successful movies increase average.
 
 *Step b*
 
@@ -180,7 +179,7 @@ ggplot(movies_one, aes(x = revenue)) +
 ```
 
 **Your Answer:**
-the Histogram show that a lot of movies dont make a lot of money it is very right sided. Ninety percent of the movies earn less than  244 million dollars while the highest revenue is almost 2.8 billion dollars. This shows that making money in the movie industry is very concentrated with a few movies most movies earn little or nothing while a few blockbusters earn extremely high revenues.
+The Histogram show that a lot of movies don't make a lot of money. It is very right sided. Ninety percent of the movies earn less than  244 million dollars while the highest revenue is almost 2.8 billion dollars. This shows that making money in the movie industry is very concentrated with a few movies. Most movies earn little or nothing while a few blockbusters earn extremely high revenues.
 
 
 *Step d*
@@ -196,7 +195,7 @@ mean(movies_one$log_revenue)
 
 **Your Answer:**
 
-For movies with a revenue of zero, the log is undefined Rstudio returns -Inf (minus infinity), since log(0) = -∞. This affects 160 movies because of this the mean of log revenue is  -Inf and is therefore not usefull
+For movies with a revenue of zero, the log is undefined. Rstudio returns -Inf (minus infinity), since log(0) = -∞. This affects 160 movies. Because of this the mean of log revenue is  -Inf and is therefore not useful.
 
 *Step e*
 
@@ -215,7 +214,7 @@ ggplot(movies_one, aes(x = log_revenue)) +
 ```
 
 **Your Answer:**
-when replacing the log of zero revenue with N.A. the mean of log revenue is about 17.45 useing the left over 345 movies. The histogram is unimodal and left-skewed most values lie between roughly 16 and 21, with a peak around 18, and there is a thin tail to the left formed by a few movies with a very low positive revenue. The shape is much more symmetric than the histogram of the raw revenue.
+When replacing the log of zero revenue with N.A. the mean of log revenue is about 17.45 using the left over 345 movies. The histogram is uni modal and left-skewed. Most values lie between roughly 16 and 21, with a peak around 18, and there is a thin tail to the left formed by a few movies with a very low positive revenue. The shape is much more symmetric than the histogram of the raw revenue.
 
 *Step f*
 
