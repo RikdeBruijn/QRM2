@@ -543,68 +543,70 @@ g. Who do you think is correct? Bob or Chantal? What would you advise the movie 
 
 ```{r}
 #WRITE YOUR CODE HERE
-
+model_level <- lm(revenue ~ budget, data = movies_one)
+summary(model_level)
 ```
-
-**Your Answer:**
-
-Write your formulated response here.
+The estimated level-level regression model is $\widehat{\text{Revenue}}_i = -17{,}600{,}000 + 3.547 \times \text{Budget}_i$.
 
 *step b*
 
 ```{r}
 #WRITE YOUR CODE HERE
-
+coef(model_level)["budget"]
 ```
 
-**Your Answer:**
-
-Write your formulated response here.
+The estimated value of $\beta_1$ is approximately 3.547. This means that, on average, each additional dollar spent on a movie's production budget is associated with an increase in revenue of approximately $3.55. This coefficient is statistically significant (p < 0.001).
 
 *step c*
 
 ```{r}
 #WRITE YOUR CODE HERE
+beta1 <- coef(model_level)["budget"]
+se1 <- summary(model_level)$coefficients["budget", "Std. Error"]
+df_resid <- model_level$df.residual
 
+t_stat <- (beta1 - 1) / se1
+t_stat
+
+p_value <- 1 - pt(t_stat, df = df_resid)
+p_value
 ```
+Null hypothesis ($H_0$): $\beta_1 \leq 1$. Alternative hypothesis ($H_1$): $\beta_1 > 1$. Significance level: $\alpha = 0.05$.
 
-**Your Answer:**
-
-Write your formulated response here.
+The test statistic is $t = \frac{3.547 - 1}{0.130} \approx 19.57$, with a corresponding (one-sided) p-value that is essentially 0 (far below 0.001). Since the p-value is much smaller than $\alpha = 0.05$, we reject the null hypothesis. There is strong evidence that $\beta_1 > 1$, meaning that a dollar spent on production budget is associated with more than a dollar increase in revenue, which supports Chantal's claim.
 
 *step d*
 
 ```{r}
 #WRITE YOUR CODE HERE
+movies_one$log_revenue <- ifelse(movies_one$revenue == 0, NA, log(movies_one$revenue))
+movies_one$log_budget  <- ifelse(movies_one$budget == 0, NA, log(movies_one$budget))
 
+model_log <- lm(log_revenue ~ log_budget, data = movies_one)
+summary(model_log)
 ```
 
-**Your Answer:**
-
-Write your formulated response here.
+The estimated log-log regression model is $\widehat{\text{Log Revenue}}_i = 1.991 + 0.921 \times \text{Log Budget}_i$, estimated on 324 movies (after dropping movies with a revenue or budget of zero).
 
 *step e*
 
 ```{r}
 #WRITE YOUR CODE HERE
-
+coef(model_log)["log_budget"]
 ```
 
-**Your Answer:**
-
-Write your formulated response here.
+The estimated value of $\beta_1$ is approximately 0.921. Since this is a log-log model, $\beta_1$ can be interpreted as an elasticity: a 1% increase in production budget is associated with an approximately 0.92% increase in revenue, on average. This coefficient is statistically significant (p < 0.001).
 
 *step f*
 
 
 ```{r}
 #WRITE YOUR CODE HERE
-
+summary(model_level)$r.squared
+summary(model_log)$r.squared
 ```
 
-**Your Answer:**
-
-Write your formulated response here.
+The level-level model has an $R^2$ of approximately 0.596, while the log-log model has an $R^2$ of approximately 0.397. Based on $R^2$ alone, the level-level model appears to fit better. However, this comparison is not entirely fair: the two models are estimated on different numbers of observations (505 for the level-level model vs. 324 for the log-log model, since movies with zero revenue or budget are dropped in the log-log model), and the dependent variables are on different scales (dollars vs. log-dollars), so their $R^2$ values are not directly comparable in a strict sense. Looking at the diagnostics, the level-level model also shows extremely high skewness and kurtosis in its residuals (skew ≈ 6.99, kurtosis ≈ 103), suggesting its errors are far from normally distributed and likely driven by a few extreme outliers (like Avatar). The log-log model's residuals are much closer to a well-behaved distribution, even though its raw $R^2$ is lower. This suggests the log-log model may actually provide a more reliable and robust fit, even though it explains less variance on the original scale.
 
 *step g*
 
@@ -613,9 +615,9 @@ Write your formulated response here.
 
 ```
 
-**Your Answer:**
+Based on the regression results, Chantal appears to be correct: in both the level-level and log-log models, the relationship between budget and revenue is positive and statistically significant, and the hypothesis test in c. confirms that each dollar of budget is associated with more than a dollar of additional revenue ($\beta_1 \approx 3.55 > 1$). This suggests that, on average, production spending is more than offset by the resulting increase in revenue.
 
-Write your formulated response here.
+However, we would advise the studio to be cautious before concluding that increasing budgets is always a good strategy. This is a correlational, not necessarily causal, relationship: successful movies may attract larger budgets in anticipation of success (reverse causality), and the result is heavily influenced by a small number of very high-budget blockbusters. We would advise the studio not to simply conclude "always spend more", but to investigate which types of movies generate the best return per dollar spent, rather than assuming the same relationship holds equally for every production.
 
 2
 
