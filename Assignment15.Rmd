@@ -670,62 +670,105 @@ f. One executive at the studio wants to time the release of the movie to a speci
 
 ```{r}
 #WRITE YOUR CODE HERE
-
+table(movies_one$genre)
+sort(table(movies_one$genre), decreasing = TRUE)
 ```
-
-**Your Answer:**
-
-Write your formulated response here.
+The three most common genres are Drama 244 movies, Comedy 104 movies and Thriller 65 movies.
 
 *step b*
 
 ```{r}
 #WRITE YOUR CODE HERE
+movies_one$genre2 <- ifelse(movies_one$genre %in% c("Drama", "Comedy", "Thriller"),
+                             movies_one$genre, "Other")
 
+table(movies_one$genre2)
 ```
 
-**Your Answer:**
-
-Write your formulated response here.
+The new variable genre2 keeps Drama, Comedy, and Thriller as separate categories, while all other genres (Action, Documentary, Family, Adventure, Horror, Fiction, Fantasy, and any NA genres) are grouped into "Other". The frequency table shows: Drama (244), Comedy (104), Other (92), and Thriller (65).
 
 *step c*
 
 ```{r}
 #WRITE YOUR CODE HERE
+movies_one$genre2 <- relevel(factor(movies_one$genre2), ref = "Other")
 
+model_genre <- lm(log_revenue ~ log_budget + genre2 + release_year, data = movies_one)
+summary(model_genre)
 ```
 
-**Your Answer:**
-
-Write your formulated response here.
+-Intercept (1.28): the predicted log revenue for an "Other"-genre movie, with a log budget and release year of zero, this value has no direct real-world interpretation on its own.
+-log_budget (0.911): holding genre and release year constant, a 1% increase in budget is associated with an approximately 0.91% increase in revenue (elasticity interpretation). This effect is highly significant (p < 0.001).
+-genre2Drama (−0.281): holding budget and release year constant, Drama movies are predicted to have about 28% lower revenue than "Other" genre movies, although this difference is not statistically significant (p = 0.261).
+-genre2Comedy (0.368): holding budget and release year constant, Comedy movies are predicted to have about 37% higher revenue than "Other" genre movies, but this is also not statistically significant (p = 0.192).
+-genre2Thriller (0.162): holding budget and release year constant, Thriller movies are predicted to have about 16% higher revenue than "Other" genre movies, not statistically significant (p = 0.598).
+-release_year (0.0004): holding budget and genre constant, each additional year is associated with an essentially negligible (and statistically insignificant, p = 0.974) change in log revenue, suggesting no meaningful time trend once budget and genre are controlled for.
 
 *step d*
 
 ```{r}
 #WRITE YOUR CODE HERE
+model_predict <- lm(log_revenue ~ log_budget + genre2 + release_year + runtime, data = movies_one)
+summary(model_predict)
 
+new_movie <- data.frame(
+  log_budget = log(20000000),
+  genre2 = factor("Drama", levels = levels(movies_one$genre2)),
+  release_year = 2026,
+  runtime = 120
+)
+
+pred <- predict(model_predict, newdata = new_movie, interval = "prediction", level = 0.90)
+pred
+
+exp(pred)
 ```
 
-**Your Answer:**
-
-Write your formulated response here.
-
+The model predicts a log revenue of approximately 17.31 for this movie, which corresponds to a predicted revenue of approximately $33.0 million. The 90% prediction interval for log revenue translates to a revenue interval of roughly $2.3 million to $481.9 million. This is an extremely wide interval, reflecting the large amount of unexplained variation in movie revenue even after accounting for budget, genre, release year, and runtime.
 *step e*
 
 ```{r}
 #WRITE YOUR CODE HERE
+model_predict <- lm(log_revenue ~ log_budget + genre2 + release_year + runtime, 
+                     data = movies_one, na.action = na.exclude)
+
+movies_one$residuals <- resid(model_predict)
+movies_one$fitted <- fitted(model_predict)
+
+ggplot(movies_one, aes(x = log_budget, y = residuals)) +
+  geom_point(na.rm = TRUE) +
+  geom_hline(yintercept = 0, color = "red") +
+  labs(title = "Residuals vs. log budget", x = "Log budget", y = "Residuals")
+
+ggplot(movies_one, aes(x = runtime, y = residuals)) +
+  geom_point(na.rm = TRUE) +
+  geom_hline(yintercept = 0, color = "red") +
+  labs(title = "Residuals vs. runtime", x = "Runtime", y = "Residuals")
+
+ggplot(movies_one, aes(x = fitted, y = residuals)) +
+  geom_point(na.rm = TRUE) +
+  geom_hline(yintercept = 0, color = "red") +
+  labs(title = "Residuals vs. fitted values", x = "Fitted values", y = "Residuals")
 
 ```
 
-**Your Answer:**
-
-Write your formulated response here.
+The residual plots against log budget, runtime, and the fitted values do not show a strong, obvious funnel-shaped pattern, the spread of residuals looks relatively similar across the range of each variable. This suggests that there is not strong evidence of heteroskedasticity in this log-log specification. This makes sense: one of the main benefits of using the log transformation for revenue and budget is that it tends to stabilize the variance compared to using the raw (level) variables, where we would expect much more clear heteroskedasticity (larger absolute errors for high-budget/high-revenue movies).
 
 *step f*
 
 
 ```{r}
 #WRITE YOUR CODE HERE
+model_restricted <- lm(log_revenue ~ log_budget + genre2 + release_year, data = movies_one)
+model_full <- lm(log_revenue ~ log_budget + genre2 + release_year + factor(release_month), data = movies_one)
 
+anova(model_restricted, model_full)
 ```
 
+Null hypothesis ($H_0$): the coefficients on all the release-month dummies are jointly equal to zero (month of release has no effect on revenue, after controlling for budget, genre, and release year).
+Alternative hypothesis ($H_1$): at least one release-month dummy coefficient is different from zero.
+Significance level: $\alpha = 0.05$.
+
+Using an F-test comparing the restricted model (without month) to the full model (with month dummies), the F-statistic is approximately 1.22, with a corresponding p-value of approximately 0.27. Since the p-value is much greater than $\alpha = 0.05$, we fail to reject the null hypothesis. There is no statistically significant evidence that the month of release affects movie revenue, once budget, genre, and release year are accounted for.
+
+Advice to the studio: based on this analysis, we would advise the studio that the timing of the release within the year does not appear to have a statistically significant impact on revenue. Rather than focusing on choosing a specific "optimal" release month, the studio would likely get more value from focusing on factors that do significantly predict revenue, such as production budget. That said, this result is purely statistical and based on a relatively small and selective sample; the studio may still want to consider other practical factors (such as competition from other major releases, or qualifying windows for awards season) when timing a release.
