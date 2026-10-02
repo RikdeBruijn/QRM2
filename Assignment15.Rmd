@@ -628,23 +628,31 @@ b. Using the insights from the scatterplot, your linear model, and your data, fi
 
 ```{r}
 #WRITE YOUR CODE HERE
-
+ggplot(movies_one, aes(x = log_budget, y = log_revenue)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(title = "Log revenue vs. log budget",
+       x = "Log of budget",
+       y = "Log of revenue")
 ```
 
-**Your Answer:**
-
-Write your formulated response here.
+The scatter plot shows a clear positive association between log budget and log revenue: movies with higher budgets tend to also have higher revenue. The fitted straight line, based on the regression model from question 1d, summarizes this relationship. There is still considerable scatter around the line, meaning that budget alone does not perfectly predict revenue.
 
 *step b*
 
 ```{r}
 #WRITE YOUR CODE HERE
+movies_one$predicted_log_revenue <- predict(model_log, newdata = movies_one)
+movies_one$residual <- movies_one$log_revenue - movies_one$predicted_log_revenue
 
+movies_one %>%
+  arrange(desc(residual)) %>%
+  select(title, log_revenue, predicted_log_revenue, residual) %>%
+  head(5)
 ```
 
-**Your Answer:**
+A movie that vastly overperformed, given its budget, is "The Gallows". Its log of revenue was approximately 17.57, while the model predicted a log of revenue of approximately 13.33, given its (low) budget of only $100,000. This gives a residual of approximately 4.24, the largest positive residual in the dataset. In other words, the actual revenue of $42.7 million was far higher than what the model would expect based on its small budget alone, this movie earned much more than its budget would predict.
 
-Write your formulated response here.
 
 # Week 5
 
