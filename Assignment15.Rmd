@@ -719,7 +719,7 @@ pred
 exp(pred)
 ```
 
-The model predicts a log revenue of approximately 17.31 for this movie, which corresponds to a predicted revenue of approximately $33.0 million. The 90% prediction interval for log revenue translates to a revenue interval of roughly $2.3 million to $481.9 million. This is an extremely wide interval, reflecting the large amount of unexplained variation in movie revenue even after accounting for budget, genre, release year, and runtime.
+The model predicts a log revenue of approximately 17.31 for this movie, which corresponds to a predicted revenue of approximately 33.0 million dollars. The 90% prediction interval for log revenue translates to a revenue interval of roughly 2.3 million dollars to 481.9 million dollars. This is an extremely wide interval, reflecting the large amount of unexplained variation in movie revenue even after accounting for budget, genre, release year, and run time.
 *step e*
 
 ```{r}
@@ -747,7 +747,7 @@ ggplot(movies_one, aes(x = fitted, y = residuals)) +
 
 ```
 
-The residual plots against log budget, runtime, and the fitted values do not show a strong, obvious funnel-shaped pattern, the spread of residuals looks relatively similar across the range of each variable. This suggests that there is not strong evidence of heteroskedasticity in this log-log specification. This makes sense: one of the main benefits of using the log transformation for revenue and budget is that it tends to stabilize the variance compared to using the raw (level) variables, where we would expect much more clear heteroskedasticity (larger absolute errors for high-budget/high-revenue movies).
+The residual plots against log budget, run time, and the fitted values do not show a strong, obvious funnel-shaped pattern, the spread of residuals looks relatively similar across the range of each variable. This suggests that there is not strong evidence of heteroskedasticity in this log-log specification. This makes sense: one of the main benefits of using the log transformation for revenue and budget is that it tends to stabilize the variance compared to using the raw (level) variables, where we would expect much more clear heteroskedasticity.
 
 *step f*
 
