@@ -19,11 +19,10 @@ header-includes:
     showtabs = false,
     breaklines,
     commandchars=\\\{\}
+  }
 format:
   html:
     code-overflow: wrap
-    
-    
 ---
 
 ```{r setup, include=FALSE}
