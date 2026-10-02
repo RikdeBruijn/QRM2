@@ -555,7 +555,7 @@ The estimated level-level regression model is $\widehat{\text{Revenue}}_i = -17{
 coef(model_level)["budget"]
 ```
 
-The estimated value of $\beta_1$ is approximately 3.547. This means that, on average, each additional dollar spent on a movie's production budget is associated with an increase in revenue of approximately $3.55. This coefficient is statistically significant (p < 0.001).
+The estimated slope coefficient is $\beta_1$ is approximately 3.547: on average, each extra dollar of production budget is associated with about $3.55 more revenue, holding all else constant. This effect is statistically significant (p < 0.001).
 
 *step c*
 
@@ -595,7 +595,7 @@ The estimated log-log regression model is $\widehat{\text{Log Revenue}}_i = 1.99
 coef(model_log)["log_budget"]
 ```
 
-The estimated value of $\beta_1$ is approximately 0.921. Since this is a log-log model, $\beta_1$ can be interpreted as an elasticity: a 1% increase in production budget is associated with an approximately 0.92% increase in revenue, on average. This coefficient is statistically significant (p < 0.001).
+The estimated value of $\beta_1$ is approximately 0.921. $\beta_1$ can be interpreted as an elasticity: a 1% increase in production budget is associated with an approximately 0.92% increase in revenue, on average. This coefficient is statistically significant (p < 0.001).
 
 *step f*
 
@@ -606,14 +606,9 @@ summary(model_level)$r.squared
 summary(model_log)$r.squared
 ```
 
-The level-level model has an $R^2$ of approximately 0.596, while the log-log model has an $R^2$ of approximately 0.397. Based on $R^2$ alone, the level-level model appears to fit better. However, this comparison is not entirely fair: the two models are estimated on different numbers of observations (505 for the level-level model vs. 324 for the log-log model, since movies with zero revenue or budget are dropped in the log-log model), and the dependent variables are on different scales (dollars vs. log-dollars), so their $R^2$ values are not directly comparable in a strict sense. Looking at the diagnostics, the level-level model also shows extremely high skewness and kurtosis in its residuals (skew ≈ 6.99, kurtosis ≈ 103), suggesting its errors are far from normally distributed and likely driven by a few extreme outliers (like Avatar). The log-log model's residuals are much closer to a well-behaved distribution, even though its raw $R^2$ is lower. This suggests the log-log model may actually provide a more reliable and robust fit, even though it explains less variance on the original scale.
+The level-level model has an $R^2$ of approximately 0.596, while the log-log model has an $R^2$ of approximately 0.397. Based on $R^2$ alone, the level-level model appears to fit better. However, this comparison is not entirely fair: the two models are estimated on different numbers of observations (505 for the level-level model vs. 324 for the log-log model, since movies with zero revenue or budget are dropped in the log-log model), and the dependent variables are on different scales (dollars vs. log-dollars), so their $R^2$ values are not directly comparable in a strict sense. Looking at the diagnostics, the level-level model also shows extremely high skewness and kurtosis in its residuals (skew ≈ 6.99, kurtosis ≈ 103), suggesting its errors are far from normally distributed and likely driven by a few extreme outliers (like Avatar). The log-log model's residuals are much closer to a well-behaved distribution, even though its raw $R^2$ is lower. This suggests the log-log model may actually provide a more reliable fit, even though it explains less variance on the original scale.
 
 *step g*
-
-```{r}
-#WRITE YOUR CODE HERE
-
-```
 
 Based on the regression results, Chantal appears to be correct: in both the level-level and log-log models, the relationship between budget and revenue is positive and statistically significant, and the hypothesis test in c. confirms that each dollar of budget is associated with more than a dollar of additional revenue ($\beta_1 \approx 3.55 > 1$). This suggests that, on average, production spending is more than offset by the resulting increase in revenue.
 
