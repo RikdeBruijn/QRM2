@@ -122,7 +122,7 @@
 \subtitle{Period 1, 2026}
 \author{Nynke Latham 2862763, RIk de Bruijn 2894496, Meike Bliek
 2892575}
-\date{25-09-2026}
+\date{02-10-2026}
 
 \begin{document}
 \maketitle
@@ -881,18 +881,18 @@ normal distribution.
 \textbf{Your Answer:}
 
 According to the Central Limit Theorem, for a large enough sample size
-the distribution of the sample mean is approximately normal, with
-expected value equal to the population mean, \mu = 6.043, and standard
-deviation (standard error) equal to \sigma / \sqrt{n} = 1.192 /
-\sqrt{25} \approx 0.238\$. This is very close to what we found by
-simulation in d.: a mean of 6.096and a standard deviation of 0.2337529.
-The small differences are due to sampling variation, since we only drew
-100 samples rather than an infinite number of samples. This confirms the
-Central Limit Theorem: even though the original variable
-\texttt{vote\_average} is not perfectly normally distributed, the
-distribution of its sample mean is approximately normal and centered on
-the population mean, with a spread that shrinks as the sample size n
-increases.
+the distribution of the sample mean is approximately normal, \ldots with
+expected value equal to the population mean, \(\mu = 6.043\), and
+standard deviation (standard error) equal to
+\(\sigma / \sqrt{n} = 1.192 / \sqrt{25} \approx 0.238\). This is very
+close to what we found by simulation in d.: a mean of 6.096and a
+standard deviation of 0.2337529. The small differences are due to
+sampling variation, since we only drew 100 samples rather than an
+infinite number of samples. This confirms the Central Limit Theorem:
+even though the original variable \texttt{vote\_average} is not
+perfectly normally distributed, the distribution of its sample mean is
+approximately normal and centered on the population mean, with a spread
+that shrinks as the sample size n increases.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -1163,15 +1163,15 @@ for director\_gender
 
 Null hypothesis H0: the probability that a movie is directed by a male
 director is P = 0.5 (male and female directors are equally likely).
-Alternative hypothesis H1:** \(p \neq 0.5\). Significance level:**
-\(\alpha = 0.05\). Of the 470 movies with a known director gender, 426
-were directed by a man. A two-sided binomial test against \(p = 0.5\)
-gives a test statistic based on 426 successes out of 470 trials, with a
-p-value that is essentially 0 (far below 0.001). Because the p-value is
-much smaller than \(\alpha = 0.05\), we reject the null hypothesis.
-There is very strong evidence that male and female directors are not
-equally likely in this population; movies are directed by men far more
-often than by women.
+\textbf{Alternative hypothesis \(H_1\):} \(p \neq 0.5\). Significance
+level:** \(\alpha = 0.05\). Of the 470 movies with a known director
+gender, 426 were directed by a man. A two-sided binomial test against
+\(p = 0.5\) gives a test statistic based on 426 successes out of 470
+trials, with a p-value that is essentially 0 (far below 0.001). Because
+the p-value is much smaller than \(\alpha = 0.05\), we reject the null
+hypothesis. There is very strong evidence that male and female directors
+are not equally likely in this population; movies are directed by men
+far more often than by women.
 
 \emph{step c}
 
@@ -1249,8 +1249,8 @@ squared), and for movies with a female director it is approximately
 
 \textbf{Your Answer:}
 
-H0: \(\sigma^2_{female} = \sigma^2_{male}\) (≈48,055, treated as a known
-population value). \textbf{\(H_1\):}
+H0: \(\sigma^2_{female} = \sigma^2_{male}\) (approximately 48,055,
+treated as a known population value). \textbf{\(H_1\):}
 \(\sigma^2_{female} \neq \sigma^2_{male}\). \(\alpha = 0.05\). Since
 \(\sigma^2_{male}\) is known, we test \(s^2_{female}\) against it using
 \(\chi^2 = \frac{(n-1)s^2_{female}}{\sigma^2_{male}}\), which follows a
@@ -1371,14 +1371,14 @@ mean is estimated for each year.
 
 A confidence interval for a given year can be wide for two main reasons:
 (1) a small sample size in that year, since the standard error is
-s/\sqrt{n} and shrinks as n grows, and (2) a large standard deviation of
-revenue within that year, meaning revenue values are very spread out
-(e.g.~a mix of blockbusters and low-revenue movies). This can indeed be
-verified in the data. For example, 1991 and 1992 have only 3 movies
-each, and their confidence intervals are among the widest in the plot,
-showing that a small sample size drives up the width. Similarly, 2009
-has a much larger sample (37 movies) but still has one of the widest
-intervals, because its standard deviation of revenue is very high
+\(s/\sqrt{n}\) and shrinks as n grows, and (2) a large standard
+deviation of revenue within that year, meaning revenue values are very
+spread out (e.g.~a mix of blockbusters and low-revenue movies). This can
+indeed be verified in the data. For example, 1991 and 1992 have only 3
+movies each, and their confidence intervals are among the widest in the
+plot, showing that a small sample size drives up the width. Similarly,
+2009 has a much larger sample (37 movies) but still has one of the
+widest intervals, because its standard deviation of revenue is very high
 (movies that year ranged from low-revenue films to a very high-grossing
 blockbuster). In contrast, years like 1993 have both a small n and a low
 standard deviation, resulting in a narrow interval. So both a small
@@ -1435,84 +1435,215 @@ present in different years.
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\#WRITE YOUR CODE HERE}
+\NormalTok{model\_level }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(revenue }\SpecialCharTok{\textasciitilde{}}\NormalTok{ budget, }\AttributeTok{data =}\NormalTok{ movies\_one)}
+\FunctionTok{summary}\NormalTok{(model\_level)}
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{Your Answer:}
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = revenue ~ budget, data = movies_one)
+## 
+## Residuals:
+##        Min         1Q     Median         3Q        Max 
+## -420678243  -37658344   14833690   17600279 1964947903 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) -1.760e+07  7.165e+06  -2.456   0.0144 *  
+## budget       3.547e+00  1.302e-01  27.248   <2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 131700000 on 503 degrees of freedom
+## Multiple R-squared:  0.5961, Adjusted R-squared:  0.5953 
+## F-statistic: 742.5 on 1 and 503 DF,  p-value: < 2.2e-16
+\end{verbatim}
 
-Write your formulated response here.
+The estimated level-level regression model is
+\(\widehat{\text{Revenue}}_i = -17{,}600{,}000 + 3.547 \times \text{Budget}_i\).
 
 \emph{step b}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\#WRITE YOUR CODE HERE}
+\FunctionTok{coef}\NormalTok{(model\_level)[}\StringTok{"budget"}\NormalTok{]}
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{Your Answer:}
+\begin{verbatim}
+##   budget 
+## 3.546909
+\end{verbatim}
 
-Write your formulated response here.
+The estimated slope coefficient is \(\beta_1\) is approximately 3.547:
+on average, each extra dollar of production budget is associated with
+about \$3.55 more revenue, holding all else constant. This effect is
+statistically significant (p \textless{} 0.001).
 
 \emph{step c}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\#WRITE YOUR CODE HERE}
+\NormalTok{beta1 }\OtherTok{\textless{}{-}} \FunctionTok{coef}\NormalTok{(model\_level)[}\StringTok{"budget"}\NormalTok{]}
+\NormalTok{se1 }\OtherTok{\textless{}{-}} \FunctionTok{summary}\NormalTok{(model\_level)}\SpecialCharTok{$}\NormalTok{coefficients[}\StringTok{"budget"}\NormalTok{, }\StringTok{"Std. Error"}\NormalTok{]}
+\NormalTok{df\_resid }\OtherTok{\textless{}{-}}\NormalTok{ model\_level}\SpecialCharTok{$}\NormalTok{df.residual}
+
+\NormalTok{t\_stat }\OtherTok{\textless{}{-}}\NormalTok{ (beta1 }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{) }\SpecialCharTok{/}\NormalTok{ se1}
+\NormalTok{t\_stat}
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{Your Answer:}
+\begin{verbatim}
+##   budget 
+## 19.56605
+\end{verbatim}
 
-Write your formulated response here.
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p\_value }\OtherTok{\textless{}{-}} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{pt}\NormalTok{(t\_stat, }\AttributeTok{df =}\NormalTok{ df\_resid)}
+\NormalTok{p\_value}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## budget 
+##      0
+\end{verbatim}
+
+Null hypothesis (\(H_0\)): \(\beta_1 \leq 1\). Alternative hypothesis
+(\(H_1\)): \(\beta_1 > 1\). Significance level: \(\alpha = 0.05\).
+
+The test statistic is \(t = \frac{3.547 - 1}{0.130} \approx 19.57\),
+with a corresponding (one-sided) p-value that is essentially 0 (far
+below 0.001). Since the p-value is much smaller than \(\alpha = 0.05\),
+we reject the null hypothesis. There is strong evidence that
+\(\beta_1 > 1\), meaning that a dollar spent on production budget is
+associated with more than a dollar increase in revenue, which supports
+Chantal's claim.
 
 \emph{step d}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\#WRITE YOUR CODE HERE}
+\NormalTok{movies\_one}\SpecialCharTok{$}\NormalTok{log\_revenue }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(movies\_one}\SpecialCharTok{$}\NormalTok{revenue }\SpecialCharTok{==} \DecValTok{0}\NormalTok{, }\ConstantTok{NA}\NormalTok{, }\FunctionTok{log}\NormalTok{(movies\_one}\SpecialCharTok{$}\NormalTok{revenue))}
+\NormalTok{movies\_one}\SpecialCharTok{$}\NormalTok{log\_budget  }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(movies\_one}\SpecialCharTok{$}\NormalTok{budget }\SpecialCharTok{==} \DecValTok{0}\NormalTok{, }\ConstantTok{NA}\NormalTok{, }\FunctionTok{log}\NormalTok{(movies\_one}\SpecialCharTok{$}\NormalTok{budget))}
+
+\NormalTok{model\_log }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(log\_revenue }\SpecialCharTok{\textasciitilde{}}\NormalTok{ log\_budget, }\AttributeTok{data =}\NormalTok{ movies\_one)}
+\FunctionTok{summary}\NormalTok{(model\_log)}
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{Your Answer:}
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = log_revenue ~ log_budget, data = movies_one)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -14.7790  -0.5049   0.2156   0.7958   4.9779 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)   1.9906     1.0826   1.839   0.0669 .  
+## log_budget    0.9207     0.0633  14.545   <2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 1.624 on 322 degrees of freedom
+##   (181 observations deleted due to missingness)
+## Multiple R-squared:  0.3965, Adjusted R-squared:  0.3946 
+## F-statistic: 211.6 on 1 and 322 DF,  p-value: < 2.2e-16
+\end{verbatim}
 
-Write your formulated response here.
+The estimated log-log regression model is
+\(\widehat{\text{Log Revenue}}_i = 1.991 + 0.921 \times \text{Log Budget}_i\),
+estimated on 324 movies (after dropping movies with a revenue or budget
+of zero).
 
 \emph{step e}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\#WRITE YOUR CODE HERE}
+\FunctionTok{coef}\NormalTok{(model\_log)[}\StringTok{"log\_budget"}\NormalTok{]}
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{Your Answer:}
+\begin{verbatim}
+## log_budget 
+##  0.9207402
+\end{verbatim}
 
-Write your formulated response here.
+The estimated value of \(\beta_1\) is approximately 0.921. \(\beta_1\)
+can be interpreted as an elasticity: a 1\% increase in production budget
+is associated with an approximately 0.92\% increase in revenue, on
+average. This coefficient is statistically significant (p \textless{}
+0.001).
 
 \emph{step f}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\#WRITE YOUR CODE HERE}
+\FunctionTok{summary}\NormalTok{(model\_level)}\SpecialCharTok{$}\NormalTok{r.squared}
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{Your Answer:}
-
-Write your formulated response here.
-
-\emph{step g}
+\begin{verbatim}
+## [1] 0.5961367
+\end{verbatim}
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\#WRITE YOUR CODE HERE}
+\FunctionTok{summary}\NormalTok{(model\_log)}\SpecialCharTok{$}\NormalTok{r.squared}
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{Your Answer:}
+\begin{verbatim}
+## [1] 0.3965097
+\end{verbatim}
 
-Write your formulated response here.
+The level-level model has an \(R^2\) of approximately 0.596, while the
+log-log model has an \(R^2\) of approximately 0.397. Based on \(R^2\)
+alone, the level-level model appears to fit better. However, this
+comparison is not entirely fair: the two models are estimated on
+different numbers of observations (505 for the level-level model vs.~324
+for the log-log model, since movies with zero revenue or budget are
+dropped in the log-log model), and the dependent variables are on
+different scales (dollars vs.~log-dollars), so their \(R^2\) values are
+not directly comparable in a strict sense. Looking at the diagnostics,
+the level-level model also shows extremely high skewness and kurtosis in
+its residuals (skew ≈ 6.99, kurtosis ≈ 103), suggesting its errors are
+far from normally distributed and likely driven by a few extreme
+outliers (like Avatar). The log-log model's residuals are much closer to
+a well-behaved distribution, even though its raw \(R^2\) is lower. This
+suggests the log-log model may actually provide a more reliable fit,
+even though it explains less variance on the original scale.
+
+\emph{step g}
+
+Based on the regression results, Chantal appears to be correct: in both
+the level-level and log-log models, the relationship between budget and
+revenue is positive and statistically significant, and the hypothesis
+test in c.~confirms that each dollar of budget is associated with more
+than a dollar of additional revenue (\(\beta_1 \approx 3.55 > 1\)). This
+suggests that, on average, production spending is more than offset by
+the resulting increase in revenue.
+
+However, we would advise the studio to be cautious before concluding
+that increasing budgets is always a good strategy. This is a
+correlational, not necessarily causal, relationship: successful movies
+may attract larger budgets in anticipation of success (reverse
+causality), and the result is heavily influenced by a small number of
+very high-budget blockbusters. We would advise the studio not to simply
+conclude ``always spend more'', but to investigate which types of movies
+generate the best return per dollar spent, rather than assuming the same
+relationship holds equally for every production.
 
 2
 
@@ -1537,24 +1668,72 @@ Write your formulated response here.
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\#WRITE YOUR CODE HERE}
+\FunctionTok{ggplot}\NormalTok{(movies\_one, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ log\_budget, }\AttributeTok{y =}\NormalTok{ log\_revenue)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{"lm"}\NormalTok{, }\AttributeTok{se =} \ConstantTok{FALSE}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Log revenue vs. log budget"}\NormalTok{,}
+       \AttributeTok{x =} \StringTok{"Log of budget"}\NormalTok{,}
+       \AttributeTok{y =} \StringTok{"Log of revenue"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{Your Answer:}
+\begin{verbatim}
+## `geom_smooth()` using formula = 'y ~ x'
+\end{verbatim}
 
-Write your formulated response here.
+\begin{verbatim}
+## Warning: Removed 181 rows containing non-finite outside the scale range
+## (`stat_smooth()`).
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Removed 181 rows containing missing values or values outside the scale range
+## (`geom_point()`).
+\end{verbatim}
+
+\pandocbounded{\includegraphics[keepaspectratio]{Assignment15_files/figure-latex/unnamed-chunk-28-1.pdf}}
+
+The scatter plot shows a clear positive association between log budget
+and log revenue: movies with higher budgets tend to also have higher
+revenue. The fitted straight line, based on the regression model from
+question 1d, summarizes this relationship. There is still considerable
+scatter around the line, meaning that budget alone does not perfectly
+predict revenue.
 
 \emph{step b}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\#WRITE YOUR CODE HERE}
+\NormalTok{movies\_one}\SpecialCharTok{$}\NormalTok{predicted\_log\_revenue }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(model\_log, }\AttributeTok{newdata =}\NormalTok{ movies\_one)}
+\NormalTok{movies\_one}\SpecialCharTok{$}\NormalTok{residual }\OtherTok{\textless{}{-}}\NormalTok{ movies\_one}\SpecialCharTok{$}\NormalTok{log\_revenue }\SpecialCharTok{{-}}\NormalTok{ movies\_one}\SpecialCharTok{$}\NormalTok{predicted\_log\_revenue}
+
+\NormalTok{movies\_one }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{arrange}\NormalTok{(}\FunctionTok{desc}\NormalTok{(residual)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(title, log\_revenue, predicted\_log\_revenue, residual) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{head}\NormalTok{(}\DecValTok{5}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{Your Answer:}
+\begin{verbatim}
+## # A tibble: 5 x 4
+##   title             log_revenue predicted_log_revenue residual
+##   <chr>                   <dbl>                 <dbl>    <dbl>
+## 1 The Gallows              17.6                  12.6     4.98
+## 2 Saw                      18.5                  14.9     3.58
+## 3 Clerks                   15.0                  11.4     3.58
+## 4 Primer                   13.0                  10.1     2.82
+## 5 The King's Speech        19.8                  17.2     2.64
+\end{verbatim}
 
-Write your formulated response here.
+A movie that vastly overperformed, given its budget, is ``The Gallows''.
+Its log of revenue was approximately 17.57, while the model predicted a
+log of revenue of approximately 13.33, given its (low) budget of only
+100,000 dollars. This gives a residual of approximately 4.24, the
+largest positive residual in the data set. In other words, the actual
+revenue of \$42.7 million was far higher than what the model would
+expect based on its small budget alone, this movie earned much more than
+its budget would predict.
 
 \section{Week 5}\label{week-5}
 
@@ -1608,68 +1787,294 @@ runtime of 120 minutes.
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\#WRITE YOUR CODE HERE}
+\FunctionTok{table}\NormalTok{(movies\_one}\SpecialCharTok{$}\NormalTok{genre)}
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{Your Answer:}
+\begin{verbatim}
+## 
+##      Action   Adventure      Comedy       Crime Documentary       Drama 
+##          38           8         104           2          11         244 
+##      Family     Fantasy     Fiction      Horror       Music     Romance 
+##          10           2           6           8           1           1 
+##    Thriller 
+##          65
+\end{verbatim}
 
-Write your formulated response here.
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sort}\NormalTok{(}\FunctionTok{table}\NormalTok{(movies\_one}\SpecialCharTok{$}\NormalTok{genre), }\AttributeTok{decreasing =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##       Drama      Comedy    Thriller      Action Documentary      Family 
+##         244         104          65          38          11          10 
+##   Adventure      Horror     Fiction       Crime     Fantasy       Music 
+##           8           8           6           2           2           1 
+##     Romance 
+##           1
+\end{verbatim}
+
+The three most common genres are Drama 244 movies, Comedy 104 movies and
+Thriller 65 movies.
 
 \emph{step b}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\#WRITE YOUR CODE HERE}
+\NormalTok{movies\_one}\SpecialCharTok{$}\NormalTok{genre2 }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(movies\_one}\SpecialCharTok{$}\NormalTok{genre }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\StringTok{"Drama"}\NormalTok{, }\StringTok{"Comedy"}\NormalTok{, }\StringTok{"Thriller"}\NormalTok{),}
+\NormalTok{                             movies\_one}\SpecialCharTok{$}\NormalTok{genre, }\StringTok{"Other"}\NormalTok{)}
+
+\FunctionTok{table}\NormalTok{(movies\_one}\SpecialCharTok{$}\NormalTok{genre2)}
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{Your Answer:}
+\begin{verbatim}
+## 
+##   Comedy    Drama    Other Thriller 
+##      104      244       92       65
+\end{verbatim}
 
-Write your formulated response here.
+The new variable genre2 keeps Drama, Comedy, and Thriller as separate
+categories, while all other genres (Action, Documentary, Family,
+Adventure, Horror, Fiction, Fantasy, and any NA genres) are grouped into
+``Other''. The frequency table shows: Drama (244), Comedy (104), Other
+(92), and Thriller (65).
 
 \emph{step c}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\#WRITE YOUR CODE HERE}
+\NormalTok{movies\_one}\SpecialCharTok{$}\NormalTok{genre2 }\OtherTok{\textless{}{-}} \FunctionTok{relevel}\NormalTok{(}\FunctionTok{factor}\NormalTok{(movies\_one}\SpecialCharTok{$}\NormalTok{genre2), }\AttributeTok{ref =} \StringTok{"Other"}\NormalTok{)}
+
+\NormalTok{model\_genre }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(log\_revenue }\SpecialCharTok{\textasciitilde{}}\NormalTok{ log\_budget }\SpecialCharTok{+}\NormalTok{ genre2 }\SpecialCharTok{+}\NormalTok{ release\_year, }\AttributeTok{data =}\NormalTok{ movies\_one)}
+\FunctionTok{summary}\NormalTok{(model\_genre)}
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{Your Answer:}
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = log_revenue ~ log_budget + genre2 + release_year, 
+##     data = movies_one)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -14.5135  -0.5053   0.2392   0.7900   4.7458 
+## 
+## Coefficients:
+##                  Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)     1.2764455 27.8518730   0.046    0.963    
+## log_budget      0.9110155  0.0633968  14.370   <2e-16 ***
+## genre2Comedy    0.3678607  0.2813770   1.307    0.192    
+## genre2Drama    -0.2810763  0.2498695  -1.125    0.261    
+## genre2Thriller  0.1622609  0.3076178   0.527    0.598    
+## release_year    0.0004446  0.0138670   0.032    0.974    
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 1.613 on 318 degrees of freedom
+##   (181 observations deleted due to missingness)
+## Multiple R-squared:  0.4122, Adjusted R-squared:  0.403 
+## F-statistic:  44.6 on 5 and 318 DF,  p-value: < 2.2e-16
+\end{verbatim}
 
-Write your formulated response here.
+-Intercept (1.28): the predicted log revenue for an ``Other''-genre
+movie, with a log budget and release year of zero, this value has no
+direct real-world interpretation on its own. -log\_budget (0.911):
+holding genre and release year constant, a 1\% increase in budget is
+associated with an approximately 0.91\% increase in revenue (elasticity
+interpretation). This effect is highly significant (p \textless{}
+0.001). -genre2Drama (−0.281): holding budget and release year constant,
+Drama movies are predicted to have about 28\% lower revenue than
+``Other'' genre movies, although this difference is not statistically
+significant (p = 0.261). -genre2Comedy (0.368): holding budget and
+release year constant, Comedy movies are predicted to have about 37\%
+higher revenue than ``Other'' genre movies, but this is also not
+statistically significant (p = 0.192). -genre2Thriller (0.162): holding
+budget and release year constant, Thriller movies are predicted to have
+about 16\% higher revenue than ``Other'' genre movies, not statistically
+significant (p = 0.598). -release\_year (0.0004): holding budget and
+genre constant, each additional year is associated with an essentially
+negligible (and statistically insignificant, p = 0.974) change in log
+revenue, suggesting no meaningful time trend once budget and genre are
+controlled for.
 
 \emph{step d}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\#WRITE YOUR CODE HERE}
+\NormalTok{model\_predict }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(log\_revenue }\SpecialCharTok{\textasciitilde{}}\NormalTok{ log\_budget }\SpecialCharTok{+}\NormalTok{ genre2 }\SpecialCharTok{+}\NormalTok{ release\_year }\SpecialCharTok{+}\NormalTok{ runtime, }\AttributeTok{data =}\NormalTok{ movies\_one)}
+\FunctionTok{summary}\NormalTok{(model\_predict)}
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{Your Answer:}
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = log_revenue ~ log_budget + genre2 + release_year + 
+##     runtime, data = movies_one)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -14.2451  -0.4664   0.2219   0.7775   4.6182 
+## 
+## Coefficients:
+##                 Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)    -3.474499  27.628408  -0.126  0.90000    
+## log_budget      0.835383   0.068606  12.177  < 2e-16 ***
+## genre2Comedy    0.539170   0.285546   1.888  0.05991 .  
+## genre2Drama    -0.370662   0.249540  -1.485  0.13844    
+## genre2Thriller  0.207607   0.304996   0.681  0.49657    
+## release_year    0.002641   0.013752   0.192  0.84784    
+## runtime         0.014696   0.005383   2.730  0.00669 ** 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 1.596 on 317 degrees of freedom
+##   (181 observations deleted due to missingness)
+## Multiple R-squared:  0.4257, Adjusted R-squared:  0.4148 
+## F-statistic: 39.16 on 6 and 317 DF,  p-value: < 2.2e-16
+\end{verbatim}
 
-Write your formulated response here.
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{new\_movie }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{log\_budget =} \FunctionTok{log}\NormalTok{(}\DecValTok{20000000}\NormalTok{),}
+  \AttributeTok{genre2 =} \FunctionTok{factor}\NormalTok{(}\StringTok{"Drama"}\NormalTok{, }\AttributeTok{levels =} \FunctionTok{levels}\NormalTok{(movies\_one}\SpecialCharTok{$}\NormalTok{genre2)),}
+  \AttributeTok{release\_year =} \DecValTok{2026}\NormalTok{,}
+  \AttributeTok{runtime =} \DecValTok{120}
+\NormalTok{)}
 
-\emph{step e}
+\NormalTok{pred }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(model\_predict, }\AttributeTok{newdata =}\NormalTok{ new\_movie, }\AttributeTok{interval =} \StringTok{"prediction"}\NormalTok{, }\AttributeTok{level =} \FloatTok{0.90}\NormalTok{)}
+\NormalTok{pred}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        fit      lwr      upr
+## 1 17.31257 14.63197 19.99316
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{exp}\NormalTok{(pred)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        fit     lwr       upr
+## 1 33018130 2262475 481860391
+\end{verbatim}
+
+The model predicts a log revenue of approximately 17.31 for this movie,
+which corresponds to a predicted revenue of approximately 33.0 million
+dollars. The 90\% prediction interval for log revenue translates to a
+revenue interval of roughly 2.3 million dollars to 481.9 million
+dollars. This is an extremely wide interval, reflecting the large amount
+of unexplained variation in movie revenue even after accounting for
+budget, genre, release year, and run time. \emph{step e}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\#WRITE YOUR CODE HERE}
+\NormalTok{model\_predict }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(log\_revenue }\SpecialCharTok{\textasciitilde{}}\NormalTok{ log\_budget }\SpecialCharTok{+}\NormalTok{ genre2 }\SpecialCharTok{+}\NormalTok{ release\_year }\SpecialCharTok{+}\NormalTok{ runtime, }
+                     \AttributeTok{data =}\NormalTok{ movies\_one, }\AttributeTok{na.action =}\NormalTok{ na.exclude)}
+
+\NormalTok{movies\_one}\SpecialCharTok{$}\NormalTok{residuals }\OtherTok{\textless{}{-}} \FunctionTok{resid}\NormalTok{(model\_predict)}
+\NormalTok{movies\_one}\SpecialCharTok{$}\NormalTok{fitted }\OtherTok{\textless{}{-}} \FunctionTok{fitted}\NormalTok{(model\_predict)}
+
+\FunctionTok{ggplot}\NormalTok{(movies\_one, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ log\_budget, }\AttributeTok{y =}\NormalTok{ residuals)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_hline}\NormalTok{(}\AttributeTok{yintercept =} \DecValTok{0}\NormalTok{, }\AttributeTok{color =} \StringTok{"red"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Residuals vs. log budget"}\NormalTok{, }\AttributeTok{x =} \StringTok{"Log budget"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Residuals"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{Your Answer:}
+\pandocbounded{\includegraphics[keepaspectratio]{Assignment15_files/figure-latex/unnamed-chunk-34-1.pdf}}
 
-Write your formulated response here.
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(movies\_one, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ runtime, }\AttributeTok{y =}\NormalTok{ residuals)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_hline}\NormalTok{(}\AttributeTok{yintercept =} \DecValTok{0}\NormalTok{, }\AttributeTok{color =} \StringTok{"red"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Residuals vs. runtime"}\NormalTok{, }\AttributeTok{x =} \StringTok{"Runtime"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Residuals"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{Assignment15_files/figure-latex/unnamed-chunk-34-2.pdf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(movies\_one, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ fitted, }\AttributeTok{y =}\NormalTok{ residuals)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_hline}\NormalTok{(}\AttributeTok{yintercept =} \DecValTok{0}\NormalTok{, }\AttributeTok{color =} \StringTok{"red"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Residuals vs. fitted values"}\NormalTok{, }\AttributeTok{x =} \StringTok{"Fitted values"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Residuals"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{Assignment15_files/figure-latex/unnamed-chunk-34-3.pdf}}
+
+The residual plots against log budget, run time, and the fitted values
+do not show a strong, obvious funnel-shaped pattern, the spread of
+residuals looks relatively similar across the range of each variable.
+This suggests that there is not strong evidence of heteroskedasticity in
+this log-log specification. This makes sense: one of the main benefits
+of using the log transformation for revenue and budget is that it tends
+to stabilize the variance compared to using the raw (level) variables,
+where we would expect much more clear heteroskedasticity.
 
 \emph{step f}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\#WRITE YOUR CODE HERE}
+\NormalTok{model\_restricted }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(log\_revenue }\SpecialCharTok{\textasciitilde{}}\NormalTok{ log\_budget }\SpecialCharTok{+}\NormalTok{ genre2 }\SpecialCharTok{+}\NormalTok{ release\_year, }\AttributeTok{data =}\NormalTok{ movies\_one)}
+\NormalTok{model\_full }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(log\_revenue }\SpecialCharTok{\textasciitilde{}}\NormalTok{ log\_budget }\SpecialCharTok{+}\NormalTok{ genre2 }\SpecialCharTok{+}\NormalTok{ release\_year }\SpecialCharTok{+} \FunctionTok{factor}\NormalTok{(release\_month), }\AttributeTok{data =}\NormalTok{ movies\_one)}
+
+\FunctionTok{anova}\NormalTok{(model\_restricted, model\_full)}
 \end{Highlighting}
 \end{Shaded}
 
+\begin{verbatim}
+## Analysis of Variance Table
+## 
+## Model 1: log_revenue ~ log_budget + genre2 + release_year
+## Model 2: log_revenue ~ log_budget + genre2 + release_year + factor(release_month)
+##   Res.Df    RSS Df Sum of Sq      F Pr(>F)
+## 1    318 826.96                           
+## 2    307 792.33 11    34.629 1.2198 0.2727
+\end{verbatim}
+
+Null hypothesis (\(H_0\)): the coefficients on all the release-month
+dummies are jointly equal to zero (month of release has no effect on
+revenue, after controlling for budget, genre, and release year).
+Alternative hypothesis (\(H_1\)): at least one release-month dummy
+coefficient is different from zero. Significance level:
+\(\alpha = 0.05\).
+
+Using an F-test comparing the restricted model (without month) to the
+full model (with month dummies), the F-statistic is approximately 1.22,
+with a corresponding p-value of approximately 0.27. Since the p-value is
+much greater than \(\alpha = 0.05\), we fail to reject the null
+hypothesis. There is no statistically significant evidence that the
+month of release affects movie revenue, once budget, genre, and release
+year are accounted for.
+
+Advice to the studio: based on this analysis, we would advise the studio
+that the timing of the release within the year does not appear to have a
+statistically significant impact on revenue. Rather than focusing on
+choosing a specific ``optimal'' release month, the studio would likely
+get more value from focusing on factors that do significantly predict
+revenue, such as production budget. That said, this result is purely
+statistical and based on a relatively small and selective sample; the
+studio may still want to consider other practical factors (such as
+competition from other major releases, or qualifying windows for awards
+season) when timing a release.
 
 \end{document}
