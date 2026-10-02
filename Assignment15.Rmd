@@ -646,7 +646,7 @@ movies_one %>%
   head(5)
 ```
 
-A movie that vastly overperformed, given its budget, is "The Gallows". Its log of revenue was approximately 17.57, while the model predicted a log of revenue of approximately 13.33, given its (low) budget of only $100,000. This gives a residual of approximately 4.24, the largest positive residual in the dataset. In other words, the actual revenue of $42.7 million was far higher than what the model would expect based on its small budget alone, this movie earned much more than its budget would predict.
+A movie that vastly overperformed, given its budget, is "The Gallows". Its log of revenue was approximately 17.57, while the model predicted a log of revenue of approximately 13.33, given its (low) budget of only 100,000 dollars. This gives a residual of approximately 4.24, the largest positive residual in the data set. In other words, the actual revenue of $42.7 million was far higher than what the model would expect based on its small budget alone, this movie earned much more than its budget would predict.
 
 
 # Week 5
